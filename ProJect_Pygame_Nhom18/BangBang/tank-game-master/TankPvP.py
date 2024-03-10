@@ -22,12 +22,12 @@ def writeScorefile():
         if not haveOne:                 #Nếu không có tệp tin, chương trình sẽ tạo một tệp mới
         
             scores = open('BangTinhDiem.txt', 'w')   
-            scores.write('1,0' + '\n')
-            scores.write('2,0' + '\n')
+            scores.write('P1,0' + '\n')
+            scores.write('P2,0' + '\n')
             scores.close()
             scoredata = {}
         ''' 
-        Chương trình sẽ mở một tệp tin mới có tên là 'BangTinhDiem.txt' ở chế độ viết ('w'). 
+        Chương trình sẽ mở một tệp tin mới có tên là 'BangTinhDiem.txt' . 
         Sau đó, chương trình sẽ ghi vào tệp tin hai dòng, mỗi dòng chứa một số thứ tự và điểm số, cách nhau bởi dấu phẩy. 
         Cuối cùng, chương trình sẽ đóng tệp tin đó và khởi tạo một từ điển rỗng tên là scoredata để lưu trữ dữ liệu.
         '''    
@@ -328,7 +328,7 @@ def selectionScreen(thisStage):
     instruction2 = my_font4.render('Press ENTER to start the battle !', True, (255,255,0))
 
     options = [imageUp_v1,imageUp_v2]                  #actual options and their stats, this helps rendering/bliting when user switch the tanks
-    stats = {0:['3', '5', '3'], 1:['5','3','1']}
+    stats = {0:['3', '6', '3'], 1:['6','3','1']}
     
     DisplaySurf = pygame.Surface((100,100))
     DisplaySurf.fill((255,255,255))                 #white surface, create contrast between tanks and background, easy for user to see tank differences
@@ -402,7 +402,7 @@ def selectionScreen(thisStage):
         screen.blit(instructionP1, (70, 290))
         screen.blit(instructionP2, (330, 290))
 
-        screen.blit(instruction, (70, 500)) #tọa độ của dòng chữ Use your left and right controls to switch between tanks
+        screen.blit(instruction, (70, 500)) #tọa độ của dòng chữ "Use your left and right controls to switch between tanks..."
         screen.blit(instruction2, (170, 520))
         pygame.display.flip()
     
@@ -516,10 +516,10 @@ def endScreen(thisStage):
     winner = max(player1.health,player2.health)     #use remaining health to determine the winner
     
     if winner == player1.health:
-            WinnerTitle =  my_font2.render('PLAYER 1 WINS', True, (212,212,212))
+            WinnerTitle =  my_font2.render('PLAYER 1 WINS', True, (255,255,0))
             scoredata['1'] +=1                                                      #whoever wins gets 1 point
     else:
-            WinnerTitle = my_font2.render('PLAYER 2 WINS', True, (212,212,212))
+            WinnerTitle = my_font2.render('PLAYER 2 WINS', True, (255,255,0))
             scoredata['2'] +=1
 
     scores = open('ProJect_Pygame_Nhom18/BangBang/tank-game-master/BangTinhDiem.txt', 'w')
@@ -527,10 +527,10 @@ def endScreen(thisStage):
     scores.write('2,' + str(scoredata['2']) + '\n')
     scores.close()
             
-    Title = my_font3.render('GAME OVER', True, (255,0,0))
+    Title = my_font3.render('END OF THE MATCH', True, (255,0,0))
     scoreTitle = my_font2.render('Scores', True, (212,212,212))
-    instruction = my_font4.render('Press r to reset scores!', True, (175,44,33))
-    instruction2 = my_font4.render('Press enter to return to game menu.', True, (175,44,33))
+    instruction = my_font4.render('Press R to reset scores!', True, (255,255,0))
+    instruction2 = my_font4.render('Press ENTER to return to game menu.', True, (255,255,0))
 
     while thisStage:
         p1Scores = my_font2.render('Player 1:  ' +str(scoredata['1']), True, (255,255,255))
@@ -589,7 +589,7 @@ background.fill(colours['grey']) #màu nền của map trong game
 
 explode = pygame.mixer.Sound('ProJect_Pygame_Nhom18/BangBang/tank-game-master/explosion.ogg')
 shoot = pygame.mixer.Sound('ProJect_Pygame_Nhom18/BangBang/tank-game-master/fire.ogg')          #sound effects and music
-musicList = ['ProJect_Pygame_Nhom18/BangBang/tank-game-master/menuSong.ogg','ProJect_Pygame_Nhom18/BangBang/tank-game-master/selectSong.ogg','ProJect_Pygame_Nhom18/BangBang/tank-game-master/battleSong.ogg','BangBang/tank-game-master/endSong.ogg']
+musicList = ['ProJect_Pygame_Nhom18/BangBang/tank-game-master/menuSong.ogg','ProJect_Pygame_Nhom18/BangBang/tank-game-master/selectSong.ogg','ProJect_Pygame_Nhom18/BangBang/tank-game-master/battleSong.ogg','ProJect_Pygame_Nhom18/BangBang/tank-game-master/endSong.ogg']
 
 maps = ['ProJect_Pygame_Nhom18/BangBang/tank-game-master/map1.txt', 'ProJect_Pygame_Nhom18/BangBang/tank-game-master/map2.txt', 'ProJect_Pygame_Nhom18/BangBang/tank-game-master/map3.txt']
 tiles = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/tank-game-master/tile.png')
