@@ -26,12 +26,14 @@ class App(QWidget):
         # Phát nhạc khi mở game
         pygame.init()
         pygame.mixer.init()
-        sound = pygame.mixer.Sound('BangBang/sounds/musicbg.wav')
+        sound = pygame.mixer.Sound('ProJect_Pygame_Nhom18/BangBang/sounds/musicbg.wav')
+
+        sound.set_volume(0.5)
         sound.play()
 
         # Tạo label hiển thị hình ảnh
         label = QLabel(self)
-        pixmap = QPixmap('BangBang/images/background.png')
+        pixmap = QPixmap('ProJect_Pygame_Nhom18/BangBang/images/background.png')
         label.setPixmap(pixmap)
         label.setGeometry(0, 0, self.width, self.height)
 
@@ -55,12 +57,12 @@ class App(QWidget):
     #click vào button Tank PvP để chạy TankPvP.py
     @pyqtSlot()
     def on_click_mode1(self):
-        subprocess.run(['python', 'BangBang/tank-game-master/TankPvP.py'])
+        subprocess.run(['python', 'ProJect_Pygame_Nhom18/BangBang/tank-game-master/TankPvP.py'])
  
     #click vào button Crazy Tank để chạy game CrazyTank.py
     @pyqtSlot()
     def on_click_mode2(self):
-        subprocess.run(['python', 'BangBang/CrazyTank.py'])
+        subprocess.run(['python', 'ProJect_Pygame_Nhom18/BangBang/CrazyTank.py'])
 
     @pyqtSlot()
     def on_click_exit(self):
