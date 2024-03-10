@@ -1,206 +1,85 @@
-#Bowen Xue, Jason Zhang
-#ICS3U1-03
-#Mr.Cope
-#2017-6-4
-
-#Tank o' Duel.py
-#A 2-player bird’s eye view game featuring tanks.
-
-#Pseduocode:
-#Due to the size of the project, we broke each stage of the game into individual functions. It is also easier to
-#explain and comment. Pseudocode for each function are shown below the function.
-#The general pseudocode for our game is:
-#import pygame, random, and time
-#initalize pygame
-#initalize pygame mixer for sounds and music
-#intialize color
-#creat variables = pygame.fonts, they will used for rendering texts
-#create a screen
-#screate background
-#load sounds, set a list = [music pieces]
-#load tiles for maps, set a map list=[map1,2,3]
-#load tank images that will be used, put them in lists
-#create present spawnpoints
-#create a sprite group called players
-#create player, give constant attributes: player.direction, player.controls, player.rect
-#players.add(the player sprites created)
-#create a walls group and a bulletgroup
-#create variables that will be used to control functions and loops action
-#write a score file if there is one
-#while mainloop is going:
-#   set fps = clock.tick(30)
-#   calls gamemenufucntion:
-#       load correct music fromt the musicList
-#       play music
-#       render titles
-#       while true:
-#   
-#           blit menu image
-#           blit titles
-#           track mouse positions, store them into variabels
-#           for events happening:
-#               if mousePos is over play game title:
-#                   underline the title
-#           elif mouse is over exitg game title:
-#               underline the title
-#           if user clicks play game title:
-#               this function terminates
-#               stop playing music
-#           elif user clicks exit game, or closes the game:
-#               this funciton terminates, set false to all other variables that control funcitons and mainloop
-#               stop playing music
-#       
-#   calls selectionScreen:
-#       load music
-#       play music
-#       render titles
-#       while true:
-#           blit images and titles
-#           ask user to navigate through the tank selection using left and right controls
-#           if user presses right or left:
-#               change the current tank image, update & blit stats,
-#           elif user presses enter:
-#               the current model of the tanks shown is user's chosen one
-#               add changable player sprite attributes: player.health, player.speed, player.reloadtimer
-#               prepare a map by picking 1 from the mapLists
-#               function terminates, stop playing music
-#           elif user closes the game:
-#               this funciton terminates, set false to all other variables that control funcitons and mainloop
-#               stop playing music
-#
-#   calls battleScreen:
-#       set timer for bullets
-#       load music
-#       play music
-#       while True:
-#           
-#           calls the player movement function
-#           for events happening:
-#
-#               if players are shooting:
-#                   create a bullet sprite and add it to bulletgroup
-#                   play the shooting sound
-#               elif user closes the game:
-#                   this function terminates
-#                   set false to other variables that controls other functions and loops
-#                   stop playing music
-#                   game terminates
-#               for everbullet in the group:
-#                   if they hit one the players:
-#                       player.health decrease by one
-#                       play the exploding sound
-#                       respawn the player
-#                   elif bullet hit a bullet:
-#                       remove each other
-#                       play the exploding sound
-#                   elif bullet hit a wall:
-#                       remove the bullet
-#                       play the exploding sound
-#               blit background, map, player, and bullets
-#               if one player.health is now 0:
-#                   this function terminates
-#                   calls the end function
-#                   stops playing music
-#   endfunction called:
-#       load music
-#       play music
-#       read the scores, store it into a dictionary
-#       checks whos the winner
-#       winner gets plus one score
-#       write the score into the file, update the dictionary
-#       render titles
-#       while true:
-#           render score
-#           blit background image, blit titles, blit scores
-#           for events happening:
-#               if user preses enter:
-#                   stop playing music
-#                   this function terminates
-#                   function will reset variables and stats at the end of the function, rewrite the scores
-#               elif user presses r:
-#                   reset score
-#               elif user closes the program:
-#                   stop playing music
-#                   this function terminates
-#                   game terminates
-#       
-#if main loop has ended:
-#   game terminates
-
 import pygame
 from pygame.locals import *
 import random
 import time
+pygame.init()
 
 
 def writeScorefile():
-    #writes a empty score CVS file
+    # mô tả về việc tạo ra một tệp CSV 
     '''
-    parameters: None
-    return: None, although a cvs file will be return
-    using try method to test if there is score file read to open
-    if yes, set a variable to tru
-    finally at the end, if variable is false, write a file, if true function ends
+   Trước tiên, bạn sẽ kiểm tra xem đã có tệp tin điểm số nào tồn tại hay chưa. Bạn có thể làm việc đó bằng cách thử mở tệp tin đó ra. 
+   Nếu không mở được tệp, tức là tệp đó không tồn tại và bạn cần tạo một tệp mới. 
+   Trong trường hợp này, bạn sẽ tạo một tệp CSV mới và thiết lập tiêu đề cho nó, chẳng hạn như "Tên người chơi, Điểm số". 
+   Sau khi tiêu đề đã được viết vào tệp, công việc của bạn coi như hoàn thành. 
+   Nếu tệp tin điểm số đã tồn tại, kết thúc quy trình kiểm tra.
     '''
     haveOne = False
-    try:                                #program will try to open this file
-        open('BangBang/tank-game-master/BangTinhDiem.txt', 'r')
+    try:                                #Chương trình sẽ mở tệp tin này
+        open('ProJect_Pygame_Nhom18/BangBang/tank-game-master/BangTinhDiem.txt', 'r')
         haveOne = True
     finally:
-        if not haveOne:                 #if there is no file, write one
+        if not haveOne:                 #Nếu không có tệp tin, chương trình sẽ tạo một tệp mới
         
-            scores = open('BangTinhDiem.txt', 'w')
+            scores = open('BangTinhDiem.txt', 'w')   
             scores.write('1,0' + '\n')
             scores.write('2,0' + '\n')
             scores.close()
             scoredata = {}
-            
+        ''' 
+        Chương trình sẽ mở một tệp tin mới có tên là 'BangTinhDiem.txt' ở chế độ viết ('w'). 
+        Sau đó, chương trình sẽ ghi vào tệp tin hai dòng, mỗi dòng chứa một số thứ tự và điểm số, cách nhau bởi dấu phẩy. 
+        Cuối cùng, chương trình sẽ đóng tệp tin đó và khởi tạo một từ điển rỗng tên là scoredata để lưu trữ dữ liệu.
+        '''    
 def player_classes(option,player):
-    #changes the classes of tanks for each player based on their selection
+    #Chọn xe tăng
     '''
-    parameter: player1 or 2, the option they chose
-    return nothing, but player.sprite attributes are added
-    checks which tank class the user has chosen, adds attributes accordingly
+    Tham số: player1 hoặc player2, tuỳ chọn mà họ đã chọn.
+    Không trả về giá trị gì, nhưng những thuộc tính player.sprite được thêm vào.
+    Kiểm tra loại xe tăng mà người dùng đã chọn và thêm các thuộc tính tương ứng.
     '''
-    if option == 0: #tank 1 has a quicker shooting speed and moves faster, but has less hp
-        player.cooldown = 10
-        player.health = 3
-        player.speed = 5
-        player.pics = ver1
-        player.image = ver1[0]
+    if option == 0: #Xe tăng 1 có tốc độ bắn nhanh hơn và di chuyển nhanh hơn, nhưng có lượng máu thấp hơn:
 
-    elif option == 1: #shoots slower, moves slower, but has more hp
-        player.cooldown = 30
-        player.health = 5
+        player.cooldown = 10 #Giảm cooldown để bắn nhanh hơn
+        player.health = 3  
+        player.speed = 5
+        player.pics = ver1 # ảnh dùng cho xe tăng loại 1
+        player.image = ver1[0] # Ảnh hiển thị đầu tiên cho xe tăng loại 1
+
+    elif option == 1: #tốc độ bắn và di chuyển chậm, nhưng nhiều máu 
+        player.cooldown = 25
+        player.health = 6
         player.speed = 3
         player.pics = ver2
         player.image = ver2[0]
 
 def movement(player):
-    #this function is for movement, works with both players
-    #the sprites class from pygame makes this possible, saving space and processing power
+    #Hàm này dùng để di chuyển, có thể áp dụng cho cả hai người chơi.
+    #Lớp sprites từ pygame làm điều này có thể, tiết kiệm không gian và sức mạnh xử lý.
     '''
-    :param player: player1 or player2,
-    :return: nothing, but moves the player sprites around the map
-    moving:
-    depending on the keys set for movement on the player sprite, if
-    one of those keys are pressed, the left or top of the sprite object is incremented at
-    the specified speed, based on their tank class. The direction of the player is set based on the key pressed,
-    and the image of the sprite changes to match the movement.
+    :param player: player1 hoặc player2,
+    :return: không trả về gì, nhưng giúp di chuyển các sprite của người chơi quanh bản đồ.
+    Di chuyển:
+    Tùy thuộc vào các phím được thiết lập cho di chuyển trên sprite của người chơi,nếu
+    một trong những phím đó được bấm, giá trị left hoặc top của đối tượng sprite sẽ được tăng lên
+    với tốc độ nhất định, dựa vào lớp xe tăng của họ. Hướng di chuyển của người chơi được thiết lập dựa trên phím được bấm,
+    và hình ảnh của sprite thay đổi để phù hợp với chuyển động.
 
-    collision detection:
-    if the sprite collides with anything in the "players" sprite group or any of the wall tiles on the map,
-    depending on the direction of the sprite at that moment, the position of its left or top value is decremented by its
-    speed value, basically making the tank stay in place when it collides with another player or the walls.
+    Nhận diện va chạm:
+    Nếu sprite va chạm với bất cứ thứ gì trong nhóm sprite "players" hoặc với các khối tường trên bản đồ,
+    tùy thuộc vào hướng của sprite lúc đó, vị trí giá trị left hoặc top của nó sẽ được giảm đi bằng
+    với giá trị tốc độ, cơ bản là khiến cho chiếc xe tăng đứng yên khi nó va chạm với người chơi khác hoặc tường.
     '''
     key = pygame.key.get_pressed()
-    #this is so that the sprite keeps moving when the user holds the key
+    #tạo ra một cơ chế di chuyển liên tục cho sprite mà không bị gián đoạn khi người chơi giữ phím 
+    # đồng thời đề cập đến cách xử lý va chạm để ngăn sprite không di chuyển qua các vật thể khác.
 
 
     if key[player.keys[0]]:
-        player.rect.left -= player.speed
-        player.direction = 'left'
-        player.image = player.pics[3]
+        player.rect.left -= player.speed # Di chuyển sprite sang trái theo tốc độ đã định
+        player.direction = 'left' # Cập nhật hướng di chuyển của sprite
+        player.image = player.pics[3] # Cập nhật hình ảnh của sprite để phản ánh hướng di chuyển sang trái
+
 
     elif key[player.keys[1]]:
         player.rect.left += player.speed
@@ -219,9 +98,11 @@ def movement(player):
 
 
     if len(pygame.sprite.spritecollide(player,players,False))> 1 or pygame.sprite.spritecollide(player,walls,False):
-    #since "player" itself is part of the players sprite group, we check to see if the len of the collision is
-    #greater than 1, meaning that it has collided with the other player. The collidelist will return -1 if it
-    #has nothing, so if the returned value isnt -1, it has hit a wall tile.
+    #trương hợp "player" - đối tượng người chơi - nằm trong nhóm sprite "players"
+    #chúng ta cần kiểm tra xem có va chạm với đối tượng khác trong nhóm hay không bằng cách xem độ dài của danh sách va chạm có lớn hơn 1 không.
+    #Điều này có nghĩa là đã có va chạm với một "player" khác.
+    #Hàm collidelist sẽ trả về -1 nếu không có va chạm nào, vậy nên, nếu giá trị trả về không phải là -1, điều đó cho biết "player" đã va chạm vào một khối "wall tile".
+    
 
         if player.direction == 'left':
             player.rect.left += player.speed
@@ -233,24 +114,22 @@ def movement(player):
             player.rect.top -= player.speed
 
 def drawPlayerHealth(player):
-    #updates and draws the player health while in battle mode
+    #Hàm này cập nhật và vẽ số máu của người chơi khi ở chế độ chiến đấu
     '''
-    parameter: which player, 1&2
-    return: nothing, but update varibales and blit health images
-    using a forloop in the range of player's health, for each health point, a heart will be drawn.
-    position of hearts changes according to which player,
-    if it's player1, hearts will be drawn in the left bottom side of the screen
-    if it's player2, hearts will be drawn in the right bottom side of the screen
+    Sử dụng một vòng lặp for trong khoảng của lượng máu còn lại của người chơi, mỗi điểm máu sẽ được vẽ một trái tim.
+   - Vị trí của các trái tim thay đổi tùy thuộc vào người chơi nào,
+   - Nếu là người chơi 1, các trái tim sẽ được vẽ ở góc dưới bên trái của màn hình.
+   - Nếu là người chơi 2, các trái tim sẽ được vẽ ở góc dưới bên phải của màn hình.
     '''
-    healthimage = pygame.image.load('BangBang/tank-game-master/health2.png')
+    healthimage = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/tank-game-master/blood.png')
     
-    p1healthpos = [60, 500]                                 #inital position of player 1 health bars/hearts
+    p1healthpos = [60, 500]                                 #Vị trí ban đầu của trái tim của người chơi 1
     p1title = my_font4.render('P1', True, (255,0,0))
     p2healthpos = [520,500]
-    p2title = my_font4.render('P2', True, (0,0,255))        #intial postion of player 2 health bars/hearts
+    p2title = my_font4.render('P2', True, (0,0,255))        #Vị trí ban đầu của trái tim của người chơi 2
     
-    screen.blit(p1title, (35, 500))
-    screen.blit(p2title, (495, 500))
+    screen.blit(p1title, (35, 500)) # vị trí player1 được đặt lúc vô trận, tọa độ x là 35 và y là 500 trên màn hình, thường thì đây là góc dưới bên trái.
+    screen.blit(p2title, (495, 500)) # Khi giá trị của tọa độ x tăng, đối tượng di chuyển sang bên phải; tọa độ y tăng,di chuyển xuống dưới.
     for c in range(player.health):
         if player == player1:
             screen.blit(healthimage,p1healthpos)
@@ -258,7 +137,12 @@ def drawPlayerHealth(player):
         else:
             screen.blit(healthimage, p2healthpos)
             p2healthpos[0] += 14
-            
+    '''
+    - Nếu player là player1, máu được vẽ tại vị trí p1healthpos trên màn hình. 
+      Với mỗi lần máu được đặt tọa độ x (vị trí ngang) của p1healthpos tăng lên 15, điều này đảm bảo rằng cục máu tiếp theo 
+      sẽ được đặt ngay cạnh nhau mà không chồng lấn lên biểu tượng trước đó.
+    
+    '''
             
 def bullet(player):
     #function that generate a bullet sprite, sets the size, color, and bullet's postion
@@ -346,9 +230,10 @@ def gameMenu(thisStage):
     pygame.mixer.music.load(musicList[0])    #variables
     pygame.mixer.music.set_volume(0.4)
     pygame.mixer.music.play(-1)
+
     
-    Title = my_font.render('Tank PvP', True, (255, 0, 0)) #màu đỏ
-    text_rect = Title.get_rect()
+    Title = my_font.render('Tank2P', True, (255, 0, 0)) #màu đỏ
+    text_rect = Title.get_rect(center=(screen.get_width() / 2, screen.get_height() / 4))  # giả sử bạn muốn chữ ở vị trí y = 100
 
     # Vẽ dòng chữ lên màn hình
     screen.blit(Title, text_rect)
@@ -432,8 +317,8 @@ def selectionScreen(thisStage):
     Opt1 = 0
     Opt2 = 0                                   #Opt1 for player1 options, Opt2 for player 2 options
     
-    instructionP1 = pygame.image.load('BangBang/tank-game-master/instruction2.png')           #pics with player controls, help users learn the controls of their tanks
-    instructionP2 = pygame.image.load('BangBang/tank-game-master/instruction1.png')
+    instructionP1 = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/tank-game-master/instruction2.png')           #pics with player controls, help users learn the controls of their tanks
+    instructionP2 = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/tank-game-master/instruction1.png')
     
     Title = my_font3.render('Game Instructions', True, (9,225,242))
     p1Title = my_font4.render('P1', True, (255,255,0)) #chữ màu vàng nền trong suốt
@@ -621,7 +506,7 @@ def endScreen(thisStage):
     bulletgroup.empty()     #delete all remaining bullets 
     walls.empty()               #delete tiles since map will be redrawn
 
-    scores = open('BangBang/tank-game-master/BangTinhDiem.txt', 'r')
+    scores = open('ProJect_Pygame_Nhom18/BangBang/tank-game-master/BangTinhDiem.txt', 'r')
     for l in scores:
         dataFields = l.split(',')
         dataFields[-1] = dataFields[-1].strip('\n')
@@ -637,7 +522,7 @@ def endScreen(thisStage):
             WinnerTitle = my_font2.render('PLAYER 2 WINS', True, (212,212,212))
             scoredata['2'] +=1
 
-    scores = open('BangBang/tank-game-master/BangTinhDiem.txt', 'w')
+    scores = open('ProJect_Pygame_Nhom18/BangBang/tank-game-master/BangTinhDiem.txt', 'w')
     scores.write('1,' + str(scoredata['1']) + '\n')         #record the win
     scores.write('2,' + str(scoredata['2']) + '\n')
     scores.close()
@@ -675,7 +560,7 @@ def endScreen(thisStage):
                     scoredata['1'] = 0        #reset the scores if one player gets mad and wants to restart all over
                     scoredata['2'] = 0
 
-    scores = open('BangBang/tank-game-master/BangTinhDiem.txt', 'w')
+    scores = open('ProJect_Pygame_Nhom18/BangBang/tank-game-master/BangTinhDiem.txt', 'w')
     scores.write('1,' + str(scoredata['1']) + '\n')
     scores.write('2,' + str(scoredata['2']) + '\n')         #final recording and updating just to be safe
     scores.close()
@@ -696,29 +581,29 @@ my_font5 = pygame.font.SysFont('arial', 16)
 
 size = (605, 540)
 screen = pygame.display.set_mode(size)
-screenPIC = pygame.image.load('BangBang/tank-game-master/anhnen.png')
+screenPIC = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/tank-game-master/anhnen.png')
 pygame.display.set_caption("Tank Moba PvP")              #screen setup
 background = pygame.Surface(size)
 background = background.convert()
 background.fill(colours['grey']) #màu nền của map trong game
 
-explode = pygame.mixer.Sound('BangBang/tank-game-master/explosion.ogg')
-shoot = pygame.mixer.Sound('BangBang/tank-game-master/fire.ogg')          #sound effects and music
-musicList = ['BangBang/tank-game-master/menuSong.ogg','BangBang/tank-game-master/selectSong.ogg','BangBang/tank-game-master/battleSong.ogg','BangBang/tank-game-master/endSong.ogg']
+explode = pygame.mixer.Sound('ProJect_Pygame_Nhom18/BangBang/tank-game-master/explosion.ogg')
+shoot = pygame.mixer.Sound('ProJect_Pygame_Nhom18/BangBang/tank-game-master/fire.ogg')          #sound effects and music
+musicList = ['ProJect_Pygame_Nhom18/BangBang/tank-game-master/menuSong.ogg','ProJect_Pygame_Nhom18/BangBang/tank-game-master/selectSong.ogg','ProJect_Pygame_Nhom18/BangBang/tank-game-master/battleSong.ogg','BangBang/tank-game-master/endSong.ogg']
 
-maps = ['BangBang/tank-game-master/map1.txt', 'BangBang/tank-game-master/map2.txt', 'BangBang/tank-game-master/map3.txt']
-tiles = pygame.image.load('BangBang/tank-game-master/tile.png')
+maps = ['ProJect_Pygame_Nhom18/BangBang/tank-game-master/map1.txt', 'ProJect_Pygame_Nhom18/BangBang/tank-game-master/map2.txt', 'ProJect_Pygame_Nhom18/BangBang/tank-game-master/map3.txt']
+tiles = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/tank-game-master/tile.png')
 
-explosion = pygame.image.load('BangBang/tank-game-master/maybe.png')
-imageUp_v1 = pygame.image.load('BangBang/tank-game-master/ver1 up.png')
-imageDown_v1 = pygame.image.load('BangBang/tank-game-master/ver1 down.png')
-imageRight_v1 = pygame.image.load('BangBang/tank-game-master/ver1 right.png')     #load images for the tanks
-imageLeft_v1 = pygame.image.load('BangBang/tank-game-master/ver1 left.png')
+explosion = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/tank-game-master/vuno.png')
+imageUp_v1 = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/tank-game-master/ver1 up.png')
+imageDown_v1 = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/tank-game-master/ver1 down.png')
+imageRight_v1 = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/tank-game-master/ver1 right.png')     #load images for the tanks
+imageLeft_v1 = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/tank-game-master/ver1 left.png')
 
-imageUp_v2 = pygame.image.load('BangBang/tank-game-master/ver2 up.png')
-imageDown_v2 = pygame.image.load('BangBang/tank-game-master/ver2 down.png')
-imageRight_v2 = pygame.image.load('BangBang/tank-game-master/ver2 right.png')
-imageLeft_v2 = pygame.image.load('BangBang/tank-game-master/ver2 left.png')
+imageUp_v2 = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/tank-game-master/ver2 up.png')
+imageDown_v2 = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/tank-game-master/ver2 down.png')
+imageRight_v2 = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/tank-game-master/ver2 right.png')
+imageLeft_v2 = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/tank-game-master/ver2 left.png')
 
 ver1 = [imageUp_v1,imageDown_v1,imageRight_v1,imageLeft_v1]
 ver2 = [imageUp_v2,imageDown_v2,imageRight_v2,imageLeft_v2]

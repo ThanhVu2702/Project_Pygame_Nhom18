@@ -44,7 +44,8 @@ def reset_game():
 # set up các vật thể & tính điểm, cộng điểm khi nhặt được hộp quà
 def update():
     global diem, ket_thuc
-    
+    if ket_thuc:  # Không cập nhật nếu game đã kết thúc
+        return
     # Tăng tốc độ rơi của thiên thạch dựa vào điểm mà player đang có
     item.y = item.y + 2 + diem / 4
     rock.y = rock.y + 2 + diem / 4
