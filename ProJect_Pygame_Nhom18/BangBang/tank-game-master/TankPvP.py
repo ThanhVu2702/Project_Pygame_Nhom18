@@ -40,14 +40,14 @@ def player_classes(option,player):
     '''
     if option == 0: #Xe tăng 1 có tốc độ bắn nhanh hơn và di chuyển nhanh hơn, nhưng có lượng máu thấp hơn:
 
-        player.cooldown = 10 #Giảm cooldown để bắn nhanh hơn
+        player.cooldown = 30 #Giảm cooldown để bắn nhanh hơn
         player.health = 3  
         player.speed = 5
         player.pics = ver1 # ảnh dùng cho xe tăng loại 1
         player.image = ver1[0] # Ảnh hiển thị đầu tiên cho xe tăng loại 1
 
     elif option == 1: #tốc độ bắn và di chuyển chậm, nhưng nhiều máu 
-        player.cooldown = 25
+        player.cooldown = 45
         player.health = 6
         player.speed = 3
         player.pics = ver2
@@ -60,8 +60,8 @@ def movement(player):
     :param player: player1 hoặc player2,
     :return: không trả về gì, nhưng giúp di chuyển các sprite của người chơi quanh bản đồ.
     Di chuyển:
-    Tùy thuộc vào các phím được thiết lập cho di chuyển trên sprite của người chơi,nếu
-    một trong những phím đó được bấm, giá trị left hoặc top của đối tượng sprite sẽ được tăng lên
+    Tùy thuộc vào các phím được thiết lập cho di chuyển trên sprite của người chơi,
+    nếu một trong những phím đó được bấm, giá trị left hoặc top của đối tượng sprite sẽ được tăng lên
     với tốc độ nhất định, dựa vào lớp xe tăng của họ. Hướng di chuyển của người chơi được thiết lập dựa trên phím được bấm,
     và hình ảnh của sprite thay đổi để phù hợp với chuyển động.
 
@@ -232,8 +232,8 @@ def gameMenu(thisStage):
     pygame.mixer.music.play(-1)
 
     
-    Title = my_font.render('Tank2P', True, (255, 0, 0)) #màu đỏ
-    text_rect = Title.get_rect(center=(screen.get_width() / 2, screen.get_height() / 4))  # giả sử bạn muốn chữ ở vị trí y = 100
+    Title = my_font.render('Tank PvP', True, (255, 0, 0)) #màu đỏ
+    text_rect = Title.get_rect(center=(screen.get_width() / 2, screen.get_height() / 4)) 
 
     # Vẽ dòng chữ lên màn hình
     screen.blit(Title, text_rect)
@@ -273,9 +273,9 @@ def gameMenu(thisStage):
             Exit_label = my_font2.render('Exit Game', True, (212,212,212))
 
             screen.blit(screenPIC, (0,0))
-            screen.blit(Title, (175,100))
-            screen.blit(Start_label, (200,280))                 #bliting the labels
-            screen.blit(Exit_label, (200, 340))
+            screen.blit(Title, (100,100))  #căn giữa Tank2P
+            screen.blit(Start_label, (180,280))                 #bliting the labels
+            screen.blit(Exit_label, (180, 340))
             pygame.display.flip()
             
             for ev in pygame.event.get():
@@ -320,7 +320,13 @@ def selectionScreen(thisStage):
     instructionP1 = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/tank-game-master/instruction2.png')           #pics with player controls, help users learn the controls of their tanks
     instructionP2 = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/tank-game-master/instruction1.png')
     
-    Title = my_font3.render('Game Instructions', True, (9,225,242))
+    Title = my_font3.render('Select Tank', True, (9,225,242))
+    # Lấy hình chữ nhật bao quanh văn bản
+    Title_rect = Title.get_rect()
+    # Canh lề giữa cho văn bản
+    Title_rect.centerx = screen.get_rect().centerx
+    # Vẽ văn bản lên màn hình
+    screen.blit(Title, Title_rect)
     p1Title = my_font4.render('P1', True, (255,255,0)) #chữ màu vàng nền trong suốt
     p2Title = my_font4.render('P2', True, (255,255,0))
     
@@ -381,7 +387,7 @@ def selectionScreen(thisStage):
         p2statsReload = my_font5.render('Reload: ' + stats[Opt2][2], True, (212,212,212))
         
         screen.blit(screenPIC, (0,0))
-        screen.blit(Title, (70, 70)) # tọa độ dòng chữ Game Insruction
+        screen.blit(Title, (170, 70)) # tọa độ dòng chữ Select Tank
 
         screen.blit(p1Title, (160, 150))
         screen.blit(p2Title, (420, 150))
@@ -537,7 +543,7 @@ def endScreen(thisStage):
         p2Scores = my_font2.render('Player 2:  '+ str(scoredata['2']), True, (255,255,255))
 
         screen.blit(screenPIC, (0,0))
-        screen.blit(Title, (120,50))
+        screen.blit(Title, (60,50))
         screen.blit(WinnerTitle, (165,200))
         screen.blit(scoreTitle, (245,280))
         screen.blit(p1Scores, (60,340))
@@ -589,21 +595,21 @@ background.fill(colours['grey']) #màu nền của map trong game
 
 explode = pygame.mixer.Sound('ProJect_Pygame_Nhom18/BangBang/tank-game-master/explosion.ogg')
 shoot = pygame.mixer.Sound('ProJect_Pygame_Nhom18/BangBang/tank-game-master/fire.ogg')          #sound effects and music
-musicList = ['ProJect_Pygame_Nhom18/BangBang/tank-game-master/menuSong.ogg','ProJect_Pygame_Nhom18/BangBang/tank-game-master/selectSong.ogg','ProJect_Pygame_Nhom18/BangBang/tank-game-master/battleSong.ogg','ProJect_Pygame_Nhom18/BangBang/tank-game-master/endSong.ogg']
+musicList = ['ProJect_Pygame_Nhom18/BangBang/tank-game-master/menuMusic.mp3','ProJect_Pygame_Nhom18/BangBang/tank-game-master/selectSong.mp3','ProJect_Pygame_Nhom18/BangBang/tank-game-master/mbattle.ogg','ProJect_Pygame_Nhom18/BangBang/tank-game-master/endMusic.mp3']
 
 maps = ['ProJect_Pygame_Nhom18/BangBang/tank-game-master/map1.txt', 'ProJect_Pygame_Nhom18/BangBang/tank-game-master/map2.txt', 'ProJect_Pygame_Nhom18/BangBang/tank-game-master/map3.txt']
 tiles = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/tank-game-master/tile.png')
 
 explosion = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/tank-game-master/vuno.png')
-imageUp_v1 = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/tank-game-master/ver1 up.png')
-imageDown_v1 = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/tank-game-master/ver1 down.png')
-imageRight_v1 = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/tank-game-master/ver1 right.png')     #load images for the tanks
-imageLeft_v1 = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/tank-game-master/ver1 left.png')
+imageUp_v1 = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/tank-game-master/tank1 up.png')
+imageDown_v1 = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/tank-game-master/tank1 down.png')
+imageRight_v1 = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/tank-game-master/tank1 right.png')     #load images for the tanks
+imageLeft_v1 = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/tank-game-master/tank1 left.png')
 
-imageUp_v2 = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/tank-game-master/ver2 up.png')
-imageDown_v2 = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/tank-game-master/ver2 down.png')
-imageRight_v2 = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/tank-game-master/ver2 right.png')
-imageLeft_v2 = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/tank-game-master/ver2 left.png')
+imageUp_v2 = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/tank-game-master/tank2 up.png')
+imageDown_v2 = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/tank-game-master/tank2 down.png')
+imageRight_v2 = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/tank-game-master/tank2 right.png')
+imageLeft_v2 = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/tank-game-master/tank2 left.png')
 
 ver1 = [imageUp_v1,imageDown_v1,imageRight_v1,imageLeft_v1]
 ver2 = [imageUp_v2,imageDown_v2,imageRight_v2,imageLeft_v2]
