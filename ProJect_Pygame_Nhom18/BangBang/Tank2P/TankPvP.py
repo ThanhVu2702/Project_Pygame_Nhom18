@@ -4,19 +4,18 @@ import random
 import time
 pygame.init()
 
-
+################################################ SET UP BẢNG TÍNH ĐIỂM SAU TRẬN ĐẤU #########################################################################
 def writeScorefile():
-    # mô tả về việc tạo ra một tệp CSV 
+    # mô tả về việc tạo ra một tệp
     '''
-   Trước tiên, bạn sẽ kiểm tra xem đã có tệp tin điểm số nào tồn tại hay chưa. Bạn có thể làm việc đó bằng cách thử mở tệp tin đó ra. 
-   Nếu không mở được tệp, tức là tệp đó không tồn tại và bạn cần tạo một tệp mới. 
-   Trong trường hợp này, bạn sẽ tạo một tệp CSV mới và thiết lập tiêu đề cho nó, chẳng hạn như "Tên người chơi, Điểm số". 
-   Sau khi tiêu đề đã được viết vào tệp, công việc của bạn coi như hoàn thành. 
+   Trước tiên, nhóm em sẽ kiểm tra xem đã có tệp tin điểm số nào tồn tại hay chưa và có thể làm việc đó bằng cách thử mở tệp tin đó ra. 
+   Nếu không mở được tệp, tức là tệp đó không tồn tại và nhóm em cần tạo một tệp mới. 
+   Trong trường hợp này, nhóm em sẽ tạo một tệp mới và thiết lập tiêu đề cho nó, chẳng hạn như "Tên người chơi, Điểm số".  
    Nếu tệp tin điểm số đã tồn tại, kết thúc quy trình kiểm tra.
     '''
     haveOne = False
     try:                                #Chương trình sẽ mở tệp tin này
-        open('ProJect_Pygame_Nhom18/BangBang/tank-game-master/BangTinhDiem.txt', 'r')
+        open('ProJect_Pygame_Nhom18/BangBang/Tank2P/BangTinhDiem.txt', 'r')
         haveOne = True
     finally:
         if not haveOne:                 #Nếu không có tệp tin, chương trình sẽ tạo một tệp mới
@@ -27,28 +26,29 @@ def writeScorefile():
             scores.close()
             scoredata = {}
         ''' 
-        Chương trình sẽ mở một tệp tin mới có tên là 'BangTinhDiem.txt' . 
-        Sau đó, chương trình sẽ ghi vào tệp tin hai dòng, mỗi dòng chứa một số thứ tự và điểm số, cách nhau bởi dấu phẩy. 
+        Chương trình sẽ mở tệp tin 'BangTinhDiem.txt' . 
+        Sau đó, sẽ ghi vào tệp tin hai dòng, mỗi dòng chứa một số thứ tự (dòng 1 cột 1 là player1, dòng 2 cột 1 là player2) và điểm số sẽ được cạnh bên, cách nhau bởi dấu phẩy. 
         Cuối cùng, chương trình sẽ đóng tệp tin đó và khởi tạo một từ điển rỗng tên là scoredata để lưu trữ dữ liệu.
-        '''    
+        '''  
+############################################## SET UP CHỈ SỐ TANK ####################################################################################################  
 def player_classes(option,player):
-    #Chọn xe tăng
+    #lớp tank
     '''
     Tham số: player1 hoặc player2, tuỳ chọn mà họ đã chọn.
     Không trả về giá trị gì, nhưng những thuộc tính player.sprite được thêm vào.
     Kiểm tra loại xe tăng mà người dùng đã chọn và thêm các thuộc tính tương ứng.
     '''
-    if option == 0: #Xe tăng 1 có tốc độ bắn nhanh hơn và di chuyển nhanh hơn, nhưng có lượng máu thấp hơn:
+    if option == 0: #tank 1 có tốc độ bắn nhanh hơn và di chuyển nhanh hơn, nhưng có lượng máu thấp hơn
 
-        player.cooldown = 30 #Giảm cooldown để bắn nhanh hơn
+        player.cooldown = 45 #Giảm cooldown để bắn nhanh hơn
         player.health = 3  
         player.speed = 5
         player.pics = ver1 # ảnh dùng cho xe tăng loại 1
         player.image = ver1[0] # Ảnh hiển thị đầu tiên cho xe tăng loại 1
 
-    elif option == 1: #tốc độ bắn và di chuyển chậm, nhưng nhiều máu 
-        player.cooldown = 45
-        player.health = 6
+    elif option == 1: #tank 2 có tốc độ bắn và di chuyển chậm, nhưng nhiều máu 
+        player.cooldown = 30
+        player.health = 5
         player.speed = 3
         player.pics = ver2
         player.image = ver2[0]
@@ -114,17 +114,17 @@ def movement(player):
             player.rect.top -= player.speed
 
 def drawPlayerHealth(player):
-    #Hàm này cập nhật và vẽ số máu của người chơi khi ở chế độ chiến đấu
+    #Hàm này cập nhật và in số máu của người chơi khi ở chế độ chiến đấu
     '''
-    Sử dụng một vòng lặp for trong khoảng của lượng máu còn lại của người chơi, mỗi điểm máu sẽ được vẽ một trái tim.
+    Sử dụng một vòng lặp for trong khoảng của lượng máu còn lại của người chơi, mỗi điểm máu sẽ được in một trái tim.
    - Vị trí của các trái tim thay đổi tùy thuộc vào người chơi nào,
-   - Nếu là người chơi 1, các trái tim sẽ được vẽ ở góc dưới bên trái của màn hình.
-   - Nếu là người chơi 2, các trái tim sẽ được vẽ ở góc dưới bên phải của màn hình.
+   - Nếu là người chơi 1, các trái tim sẽ được in ở góc dưới bên trái của màn hình.
+   - Nếu là người chơi 2, các trái tim sẽ được in ở góc dưới bên phải của màn hình.
     '''
-    healthimage = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/tank-game-master/blood.png')
+    healthimage = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/Tank2P/blood.png')
     
-    p1healthpos = [60, 500]                                 #Vị trí ban đầu của trái tim của người chơi 1
-    p1title = my_font4.render('P1', True, (255,0,0))
+    p1healthpos = [60, 500]                                 #set up vị trí chữ P1 trong trận chiến
+    p1title = my_font4.render('P1', True, (0,0,0))
     p2healthpos = [520,500]
     p2title = my_font4.render('P2', True, (0,0,255))        #Vị trí ban đầu của trái tim của người chơi 2
     
@@ -138,14 +138,15 @@ def drawPlayerHealth(player):
             screen.blit(healthimage, p2healthpos)
             p2healthpos[0] += 14
     '''
-    - Nếu player là player1, máu được vẽ tại vị trí p1healthpos trên màn hình. 
+    - Nếu player là player1, máu được in tại vị trí p1healthpos trên màn hình. 
       Với mỗi lần máu được đặt tọa độ x (vị trí ngang) của p1healthpos tăng lên 15, điều này đảm bảo rằng cục máu tiếp theo 
       sẽ được đặt ngay cạnh nhau mà không chồng lấn lên biểu tượng trước đó.
     
     '''
-            
+
+############################################ SET UP ĐẠN ###############################################################       
 def bullet(player):
-    #function that generate a bullet sprite, sets the size, color, and bullet's postion
+    #Hàm tạo sprite đạn, thiết lập kích thước, màu sắc, và vị trí của đạn.
     '''
     :param player: player 1 or 2
     :return: nothing, but bullet sprite will be generated
@@ -155,35 +156,33 @@ def bullet(player):
     '''
     bullet = pygame.sprite.Sprite()
 
-    bullet.image = pygame.Surface((10,10))
-    bullet.image.fill((0,0,0))
+    bullet.image = pygame.Surface((5,5)) #kích thước viên đạn
+    bullet.image.fill((255,0,0)) #màu viên đạn
     bullet.rect = pygame.Rect(bullet.image.get_rect())
     bullet.direction = player.direction
 
-    if bullet.direction == 'up':                                                #bullets postions should be facing the direction of the player is facing
-        bullet.rect.x, bullet.rect.y = player.rect.x + 5, player.rect.y - 15    #there need to be distance between them 
+    if bullet.direction == 'up':                                                #set up vị trí của viên đạn sao cho nó nằm ở giữa nòng súng tank
+        bullet.rect.x, bullet.rect.y = player.rect.x + 12, player.rect.y - 20   
     elif bullet.direction == 'down':
-        bullet.rect.x, bullet.rect.y = player.rect.x + 5, player.rect.y + 24
+        bullet.rect.x, bullet.rect.y = player.rect.x + 12, player.rect.y + 24
     elif bullet.direction == 'left':
-        bullet.rect.x, bullet.rect.y = player.rect.x - 15, player.rect.y + 5
+        bullet.rect.x, bullet.rect.y = player.rect.x - 20, player.rect.y + 12
     elif bullet.direction == 'right':
-        bullet.rect.x, bullet.rect.y = player.rect.x + 24, player.rect.y + 5
+        bullet.rect.x, bullet.rect.y = player.rect.x + 24, player.rect.y + 12
 
     bulletgroup.add(bullet)
 
 def bullet_update():
-    #updates the bullet's postion
+    #cập nhật vị trí của đạn
     '''
-    :param None
-    :return None, however the bullets position will be changed
-    update the bullets every cycle, change bullet's x,y to animate the movement
+    viên đạn di chuyển theo hướng tương ứng với thuộc tính direction của nó khi viên đạn được bắn ra từ người chơi.
     '''
     for bullet in bulletgroup:
         if bullet.direction == 'left':
             bullet.rect.x -= 6
         elif bullet.direction == 'right':
             bullet.rect.x += 6
-        elif bullet.direction == 'up':
+        elif bullet.direction == 'up': #Khi viên đạn di chuyển lên trên, nghĩa là nó đang đi ngược với trục y của màn hình, do đó để viên đạn di chuyển lên trên, giá trị của trục y cần phải giảm
             bullet.rect.y -= 6
         elif bullet.direction == 'down':
             bullet.rect.y += 6
@@ -235,7 +234,7 @@ def gameMenu(thisStage):
     Title = my_font.render('Tank PvP', True, (255, 0, 0)) #màu đỏ
     text_rect = Title.get_rect(center=(screen.get_width() / 2, screen.get_height() / 4)) 
 
-    # Vẽ dòng chữ lên màn hình
+    # in dòng chữ lên màn hình
     screen.blit(Title, text_rect)
 
     Start_label = my_font2.render('Start Game', True, (212,212,212))
@@ -273,8 +272,8 @@ def gameMenu(thisStage):
             Exit_label = my_font2.render('Exit Game', True, (212,212,212))
 
             screen.blit(screenPIC, (0,0))
-            screen.blit(Title, (100,100))  #căn giữa Tank2P
-            screen.blit(Start_label, (180,280))                 #bliting the labels
+            screen.blit(Title, (90,120))  #căn giữa Tank2P
+            screen.blit(Start_label, (180,280))                 #tọa độ chuỗi Start Game
             screen.blit(Exit_label, (180, 340))
             pygame.display.flip()
             
@@ -315,18 +314,19 @@ def selectionScreen(thisStage):
     pygame.mixer.music.play(-1)
     
     Opt1 = 0
-    Opt2 = 0                                   #Opt1 for player1 options, Opt2 for player 2 options
+    Opt2 = 0                                   #Opt1 - Opt2 cài đặt của player1 - player2
     
-    instructionP1 = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/tank-game-master/instruction2.png')           #pics with player controls, help users learn the controls of their tanks
-    instructionP2 = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/tank-game-master/instruction1.png')
+    instructionP1 = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/Tank2P/moveP2.png')   #bảng hướng dẫn điều khiển tank
+    instructionP2 = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/Tank2P/moveP1.png')
     
     Title = my_font3.render('Select Tank', True, (9,225,242))
     # Lấy hình chữ nhật bao quanh văn bản
     Title_rect = Title.get_rect()
     # Canh lề giữa cho văn bản
     Title_rect.centerx = screen.get_rect().centerx
-    # Vẽ văn bản lên màn hình
+    # in văn bản lên màn hình
     screen.blit(Title, Title_rect)
+
     p1Title = my_font4.render('P1', True, (255,255,0)) #chữ màu vàng nền trong suốt
     p2Title = my_font4.render('P2', True, (255,255,0))
     
@@ -336,9 +336,9 @@ def selectionScreen(thisStage):
     options = [imageUp_v1,imageUp_v2]                  #actual options and their stats, this helps rendering/bliting when user switch the tanks
     stats = {0:['3', '6', '3'], 1:['6','3','1']}
     
-    DisplaySurf = pygame.Surface((100,100))
+    DisplaySurf = pygame.Surface((80,80))
     DisplaySurf.fill((255,255,255))                 #white surface, create contrast between tanks and background, easy for user to see tank differences
-    DisplaySurf2 = pygame.Surface((100,100))
+    DisplaySurf2 = pygame.Surface((80,80))
     DisplaySurf2.fill((255,255,255))
     
     while thisStage:
@@ -392,18 +392,18 @@ def selectionScreen(thisStage):
         screen.blit(p1Title, (160, 150))
         screen.blit(p2Title, (420, 150))
 
-        screen.blit(p1statsHealth, (45,200)) #tọa độ chỉ số máu, tốc độ của player1
-        screen.blit(p1statsSpeed, (45,220))  #tọa độ chỉ số máu, tốc độ của player1
-        screen.blit(p1statsReload, (45,240)) #tọa độ chỉ số máu, tốc độ của player1
+        screen.blit(p1statsHealth, (45,200)) 
+        screen.blit(p1statsSpeed, (45,220))  
+        screen.blit(p1statsReload, (45,240)) 
 
-        screen.blit(p2statsHealth, (500,200)) #tọa độ chỉ số máu, tốc độ của player2
-        screen.blit(p2statsSpeed, (500,220)) #tọa độ chỉ số máu, tốc độ của player2
-        screen.blit(p2statsReload, (500,240)) #tọa độ chỉ số máu, tốc độ của player2
+        screen.blit(p2statsHealth, (500,200)) #tọa độ chỉ số máu của player2
+        screen.blit(p2statsSpeed, (500,220)) #tọa độ chỉ tốc độ của player2
+        screen.blit(p2statsReload, (500,240)) #tọa độ chỉ số tốc độ bắn của player2
 
-        screen.blit(DisplaySurf, (120, 180))
-        screen.blit(DisplaySurf2, (380, 180))
-        screen.blit(options[Opt1], (158, 238))
-        screen.blit(options[Opt2], (418, 238))
+        screen.blit(DisplaySurf, (135, 189))  #tọa độ ô trắng
+        screen.blit(DisplaySurf2, (390, 189))
+        screen.blit(options[Opt1], (160, 220)) # tọa độ hình tank trong ô màu trắng
+        screen.blit(options[Opt2], (415, 220))
 
         screen.blit(instructionP1, (70, 290))
         screen.blit(instructionP2, (330, 290))
@@ -512,7 +512,7 @@ def endScreen(thisStage):
     bulletgroup.empty()     #delete all remaining bullets 
     walls.empty()               #delete tiles since map will be redrawn
 
-    scores = open('ProJect_Pygame_Nhom18/BangBang/tank-game-master/BangTinhDiem.txt', 'r')
+    scores = open('ProJect_Pygame_Nhom18/BangBang/Tank2P/BangTinhDiem.txt', 'r')
     for l in scores:
         dataFields = l.split(',')
         dataFields[-1] = dataFields[-1].strip('\n')
@@ -528,7 +528,7 @@ def endScreen(thisStage):
             WinnerTitle = my_font2.render('PLAYER 2 WINS', True, (255,255,0))
             scoredata['2'] +=1
 
-    scores = open('ProJect_Pygame_Nhom18/BangBang/tank-game-master/BangTinhDiem.txt', 'w')
+    scores = open('ProJect_Pygame_Nhom18/BangBang/Tank2P/BangTinhDiem.txt', 'w')
     scores.write('1,' + str(scoredata['1']) + '\n')         #record the win
     scores.write('2,' + str(scoredata['2']) + '\n')
     scores.close()
@@ -541,10 +541,10 @@ def endScreen(thisStage):
     while thisStage:
         p1Scores = my_font2.render('Player 1:  ' +str(scoredata['1']), True, (255,255,255))
         p2Scores = my_font2.render('Player 2:  '+ str(scoredata['2']), True, (255,255,255))
-
+        #set up tọa độ vị trí căn lề cho các text
         screen.blit(screenPIC, (0,0))
         screen.blit(Title, (60,50))
-        screen.blit(WinnerTitle, (165,200))
+        screen.blit(WinnerTitle, (155,200))
         screen.blit(scoreTitle, (245,280))
         screen.blit(p1Scores, (60,340))
         screen.blit(p2Scores, (350,340))
@@ -566,7 +566,7 @@ def endScreen(thisStage):
                     scoredata['1'] = 0        #reset the scores if one player gets mad and wants to restart all over
                     scoredata['2'] = 0
 
-    scores = open('ProJect_Pygame_Nhom18/BangBang/tank-game-master/BangTinhDiem.txt', 'w')
+    scores = open('ProJect_Pygame_Nhom18/BangBang/Tank2P/BangTinhDiem.txt', 'w')
     scores.write('1,' + str(scoredata['1']) + '\n')
     scores.write('2,' + str(scoredata['2']) + '\n')         #final recording and updating just to be safe
     scores.close()
@@ -579,37 +579,37 @@ pygame.mixer.init(44100, -16, 2, 2048)
 clock = pygame.time.Clock()
 
 colours = pygame.color.THECOLORS
-my_font = pygame.font.SysFont('impact', 120)
+my_font = pygame.font.SysFont('Verdana', 100)
 my_font2 = pygame.font.SysFont('moolboran', 66)
-my_font3 = pygame.font.SysFont('andalus', 72)      #fonts setup
+my_font3 = pygame.font.SysFont('andalus', 72)      #setup Font chữ
 my_font4 = pygame.font.SysFont('candara', 20)
 my_font5 = pygame.font.SysFont('arial', 16)
 
 size = (605, 540)
 screen = pygame.display.set_mode(size)
-screenPIC = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/tank-game-master/anhnen.png')
-pygame.display.set_caption("Tank Moba PvP")              #screen setup
+screenPIC = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/Tank2P/anhnen.png')
+pygame.display.set_caption("Tank Moba PvP")              #setup nền
 background = pygame.Surface(size)
 background = background.convert()
 background.fill(colours['grey']) #màu nền của map trong game
 
-explode = pygame.mixer.Sound('ProJect_Pygame_Nhom18/BangBang/tank-game-master/explosion.ogg')
-shoot = pygame.mixer.Sound('ProJect_Pygame_Nhom18/BangBang/tank-game-master/fire.ogg')          #sound effects and music
-musicList = ['ProJect_Pygame_Nhom18/BangBang/tank-game-master/menuMusic.mp3','ProJect_Pygame_Nhom18/BangBang/tank-game-master/selectSong.mp3','ProJect_Pygame_Nhom18/BangBang/tank-game-master/mbattle.ogg','ProJect_Pygame_Nhom18/BangBang/tank-game-master/endMusic.mp3']
+explode = pygame.mixer.Sound('ProJect_Pygame_Nhom18/BangBang/Tank2P/bum.ogg')
+shoot = pygame.mixer.Sound('ProJect_Pygame_Nhom18/BangBang/Tank2P/fireMusic.ogg')          #setup music game
+musicList = ['ProJect_Pygame_Nhom18/BangBang/Tank2P/menuMusic.mp3','ProJect_Pygame_Nhom18/BangBang/Tank2P/selectSong.mp3','ProJect_Pygame_Nhom18/BangBang/Tank2P/mbattle.ogg','ProJect_Pygame_Nhom18/BangBang/Tank2P/endMusic.mp3']
 
-maps = ['ProJect_Pygame_Nhom18/BangBang/tank-game-master/map1.txt', 'ProJect_Pygame_Nhom18/BangBang/tank-game-master/map2.txt', 'ProJect_Pygame_Nhom18/BangBang/tank-game-master/map3.txt']
-tiles = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/tank-game-master/tile.png')
+maps = ['ProJect_Pygame_Nhom18/BangBang/Tank2P/map1.txt', 'ProJect_Pygame_Nhom18/BangBang/Tank2P/map2.txt', 'ProJect_Pygame_Nhom18/BangBang/Tank2P/map3.txt']
+tiles = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/Tank2P/tuong.png')
 
-explosion = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/tank-game-master/vuno.png')
-imageUp_v1 = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/tank-game-master/tank1 up.png')
-imageDown_v1 = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/tank-game-master/tank1 down.png')
-imageRight_v1 = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/tank-game-master/tank1 right.png')     #load images for the tanks
-imageLeft_v1 = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/tank-game-master/tank1 left.png')
+explosion = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/Tank2P/vuno.png')
+imageUp_v1 = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/Tank2P/tank1 up.png')
+imageDown_v1 = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/Tank2P/tank1 down.png')
+imageRight_v1 = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/Tank2P/tank1 right.png')     #load ảnh khi tank thay đổi hướng khi di chuyển
+imageLeft_v1 = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/Tank2P/tank1 left.png')
 
-imageUp_v2 = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/tank-game-master/tank2 up.png')
-imageDown_v2 = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/tank-game-master/tank2 down.png')
-imageRight_v2 = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/tank-game-master/tank2 right.png')
-imageLeft_v2 = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/tank-game-master/tank2 left.png')
+imageUp_v2 = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/Tank2P/tank2 up.png')
+imageDown_v2 = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/Tank2P/tank2 down.png')
+imageRight_v2 = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/Tank2P/tank2 right.png')
+imageLeft_v2 = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/Tank2P/tank2 left.png')
 
 ver1 = [imageUp_v1,imageDown_v1,imageRight_v1,imageLeft_v1]
 ver2 = [imageUp_v2,imageDown_v2,imageRight_v2,imageLeft_v2]
