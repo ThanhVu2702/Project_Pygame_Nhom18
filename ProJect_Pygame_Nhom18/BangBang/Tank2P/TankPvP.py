@@ -121,7 +121,7 @@ def drawPlayerHealth(player):
    - Nếu là người chơi 1, các trái tim sẽ được in ở góc dưới bên trái của màn hình.
    - Nếu là người chơi 2, các trái tim sẽ được in ở góc dưới bên phải của màn hình.
     '''
-    healthimage = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/Tank2P/blood.png')
+    healthimage = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/Tank2P/picture/blood.png')
     
     p1healthpos = [60, 500]                                 #set up vị trí chữ P1 trong trận chiến
     p1title = my_font4.render('P1', True, (0,0,0))
@@ -316,8 +316,8 @@ def selectionScreen(thisStage):
     Opt1 = 0
     Opt2 = 0                                   #Opt1 - Opt2 cài đặt của player1 - player2
     
-    instructionP1 = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/Tank2P/moveP2.png')   #bảng hướng dẫn điều khiển tank
-    instructionP2 = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/Tank2P/moveP1.png')
+    instructionP1 = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/Tank2P/picture/moveP2.png')   #bảng hướng dẫn điều khiển tank
+    instructionP2 = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/Tank2P/picture/moveP1.png')
     
     Title = my_font3.render('Select Tank', True, (9,225,242))
     # Lấy hình chữ nhật bao quanh văn bản
@@ -587,29 +587,29 @@ my_font5 = pygame.font.SysFont('arial', 16)
 
 size = (605, 540)
 screen = pygame.display.set_mode(size)
-screenPIC = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/Tank2P/anhnen.png')
+screenPIC = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/Tank2P/picture/anhnen.png')
 pygame.display.set_caption("Tank Moba PvP")              #setup nền
 background = pygame.Surface(size)
 background = background.convert()
 background.fill(colours['grey']) #màu nền của map trong game
 
 explode = pygame.mixer.Sound('ProJect_Pygame_Nhom18/BangBang/Tank2P/bum.ogg')
-shoot = pygame.mixer.Sound('ProJect_Pygame_Nhom18/BangBang/Tank2P/fireMusic.ogg')          #setup music game
-musicList = ['ProJect_Pygame_Nhom18/BangBang/Tank2P/menuMusic.mp3','ProJect_Pygame_Nhom18/BangBang/Tank2P/selectSong.mp3','ProJect_Pygame_Nhom18/BangBang/Tank2P/mbattle.ogg','ProJect_Pygame_Nhom18/BangBang/Tank2P/endMusic.mp3']
+shoot = pygame.mixer.Sound('ProJect_Pygame_Nhom18/BangBang/Tank2P/music/fireMusic.mp3')          #setup music game
+musicList = ['ProJect_Pygame_Nhom18/BangBang/Tank2P/music/endMusic.mp3','ProJect_Pygame_Nhom18/BangBang/Tank2P/music/selectSong.mp3','ProJect_Pygame_Nhom18/BangBang/Tank2P/mbattle.ogg','ProJect_Pygame_Nhom18/BangBang/Tank2P/music/endMusic.mp3']
 
 maps = ['ProJect_Pygame_Nhom18/BangBang/Tank2P/map1.txt', 'ProJect_Pygame_Nhom18/BangBang/Tank2P/map2.txt', 'ProJect_Pygame_Nhom18/BangBang/Tank2P/map3.txt']
-tiles = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/Tank2P/tuong.png')
+tiles = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/Tank2P/picture/tuong.png')
 
-explosion = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/Tank2P/vuno.png')
-imageUp_v1 = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/Tank2P/tank1 up.png')
-imageDown_v1 = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/Tank2P/tank1 down.png')
-imageRight_v1 = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/Tank2P/tank1 right.png')     #load ảnh khi tank thay đổi hướng khi di chuyển
-imageLeft_v1 = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/Tank2P/tank1 left.png')
+explosion = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/Tank2P/picture/vuno.png')
+imageUp_v1 = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/Tank2P/picture/tank1 up.png')
+imageDown_v1 = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/Tank2P/picture/tank1 down.png')
+imageRight_v1 = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/Tank2P/picture/tank1 right.png')     #load ảnh khi tank thay đổi hướng khi di chuyển
+imageLeft_v1 = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/Tank2P/picture/tank1 left.png')
 
-imageUp_v2 = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/Tank2P/tank2 up.png')
-imageDown_v2 = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/Tank2P/tank2 down.png')
-imageRight_v2 = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/Tank2P/tank2 right.png')
-imageLeft_v2 = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/Tank2P/tank2 left.png')
+imageUp_v2 = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/Tank2P/picture/tank2 up.png')
+imageDown_v2 = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/Tank2P/picture/tank2 down.png')
+imageRight_v2 = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/Tank2P/picture/tank2 right.png')
+imageLeft_v2 = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/Tank2P/picture/tank2 left.png')
 
 ver1 = [imageUp_v1,imageDown_v1,imageRight_v1,imageLeft_v1]
 ver2 = [imageUp_v2,imageDown_v2,imageRight_v2,imageLeft_v2]
