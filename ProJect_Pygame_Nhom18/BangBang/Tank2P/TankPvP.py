@@ -48,7 +48,7 @@ def player_classes(option,player):
 
     elif option == 1: #tank 2 có tốc độ bắn và di chuyển chậm, nhưng nhiều máu 
         player.cooldown = 30
-        player.health = 5
+        player.health = 6
         player.speed = 3
         player.pics = ver2
         player.image = ver2[0]
