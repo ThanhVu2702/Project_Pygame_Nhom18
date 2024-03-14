@@ -18,7 +18,12 @@ class App(QWidget):
     def initUI(self):
         self.setWindowTitle(self.title)
         self.setGeometry(self.left, self.top, self.width, self.height)
-        # Tạo label hiển thị hình ảnh
+
+        # Thiết lập logo cho cửa sổ chính
+        icon = QIcon('ProJect_Pygame_Nhom18/BangBang/images/icon.png')
+        self.setWindowIcon(icon)
+
+        # Tạo label hiển thị ảnh nền
         label = QLabel(self)
         pixmap = QPixmap('ProJect_Pygame_Nhom18/BangBang/images/background.png')
         label.setPixmap(pixmap)
