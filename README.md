@@ -1,5 +1,5 @@
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-                                                                                      PROJECT PYGAME GROUP 18
+                                                                   PROJECT PYGAME GROUP 18
 
 
 Install instruction & extension for VSCode:
@@ -24,7 +24,8 @@ pygame (pygame Snippets)
 python
 pylance
 python Debugger
-----------------------
+---------------------
+
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Nhom quyet dinh phân chia từng phần của trò chơi thành các hàm riêng biệt do dự án có quy mô khá lớn. Phương pháp này giúp việc giải thích và ghi chú trở nên dễ dàng hơn. Dưới đây là một mô tả tổng quan về pseudocode của trò chơi của chúng tôi. Thông qua việc sử dụng pseudocode và phân chia trò chơi thành các hàm riêng biệt, chúng tôi hy vọng rằng việc hiểu và duy trì mã nguồn của trò chơi sẽ dễ dàng hơn, đồng thời cũng giúp tối ưu hóa quá trình phát triển.
 *******************************************************************************************************************************
