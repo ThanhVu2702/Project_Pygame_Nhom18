@@ -20,9 +20,13 @@ pip install pgzero
 
 --------------------
 Extension for VSCode:
+
 pygame (pygame Snippets)
+
 python
+
 pylance
+
 python Debugger
 ---------------------
 
