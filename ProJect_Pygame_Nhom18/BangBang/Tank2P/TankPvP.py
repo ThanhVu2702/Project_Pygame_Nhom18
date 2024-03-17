@@ -51,11 +51,12 @@ def player_classes(option,player):
         player.pics = ver2
         player.image = ver2[0]
 
-############### xử lý đầu vào từ bàn phím để di chuyển tank theo các hướng, ngăn tank đi xuyên tường, đi xuyên player khác #######################
+############### SET UP DI CHUYỂN CỦA TANK #######################
 def movement(player):
     
     '''
-   Di chuyển trong trò chơi phụ thuộc vào phím được bấm, va chạm sẽ làm giảm vị trí của sprite để ngăn di chuyển qua các đối tượng khác.
+   di chuyển trong trò chơi phụ thuộc vào phím được bấm
+   xử lý đầu vào từ bàn phím để di chuyển tank theo các hướng, ngăn tank đi xuyên tường, đi xuyên player khác
     '''
     key = pygame.key.get_pressed()
     #tạo ra một cơ chế di chuyển liên tục cho sprite mà không bị gián đoạn khi người chơi giữ phím 
@@ -98,7 +99,7 @@ def movement(player):
         if player.direction == 'down':
             player.rect.top -= player.speed
 
-################################### SET UP HIỂN THỊ MÁU CỦA PLAYER TRONG TRẬN CHIẾN ###############################################################################
+################################### SET UP VỊ TRÍ MÁU CỦA PLAYER TRONG TRẬN CHIẾN ###############################################################################
 def drawPlayerHealth(player):
     #Hàm này cập nhật và in số máu của người chơi khi ở chế độ chiến đấu
     '''
@@ -114,7 +115,7 @@ def drawPlayerHealth(player):
     p2healthpos = [520,500]
     p2title = my_font4.render('P2', True, (0,0,255))        
     
-    screen.blit(p1title, (35, 500)) # vị trí chữ P1, tọa độ x là 35 và y là 500 trên màn hình, thường thì đây là góc dưới bên trái.
+    screen.blit(p1title, (35, 500)) # vị trí chữ P1 (góc dưới bên trái màn hình)
     screen.blit(p2title, (495, 500)) # Khi giá trị của tọa độ x tăng, đối tượng di chuyển sang bên phải; tọa độ y tăng,di chuyển xuống dưới.
 
     #duyệt số lượng máu của người chơi và hiển thị nó trên màn hình tương ứng với vị trí của người chơi 1 hoặc người chơi 2
@@ -174,35 +175,35 @@ def bullet_update():
 ######################################## SET UP MAP #######################################################################
 def readMap():
     '''
-    chọn một map từ tệp, đọc và phân tích từng dòng của nó, nơi mỗi ô trong tệp được phân cách bởi dấu phẩy.
-    Khi đọc mỗi ô, phương pháp này gán hình ảnh cho mỗi ô và có thể tiến hành chỉnh sửa ô nếu cần thiết
+    chọn một map từ tệp, đọc và phân tích từng dòng của nó, nơi mỗi ô trong tệp cách nhau bởi dấu phẩy,dấu chấm ('.') đại diện cho các tile (tường) 
+    Khi đọc mỗi ô, phương pháp này gán hình ảnh tường cho mỗi ô và có thể tiến hành chỉnh sửa ô nếu cần thiết
     '''
-    Map = open(random.choice(maps), 'r')
+    Map = open(random.choice(maps), 'r') #Mở một file bản đồ ngẫu nhiên từ danh sách maps với quyền đọc ('r').
     
-    x = 0 #Biến x và y bắt đầu từ giá trị 0 và được dùng để theo dõi vị trí khi xử lý tệp để thêm sprite.
+    x = 0 # kiểm soát vị trí x và y trên bản đồ khi đặt các tiles
     y = 0
 
     '''
-    tạo ra một bức tường từ các tiles có kích thước 11x11 pixel, biểu diễn bởi các dấu chấm trong tệp đầu vào.
+    tạo ra một bức tường từ các tiles có kích thước 12x12 pixel, biểu diễn bởi các dấu chấm trong tệp đầu vào.
     '''
     for l in Map:   
-        builtup = l.split(',') #tách dòng thành một danh sách các chuỗi
-        builtup[-1] = builtup[-1].strip('\n') 
+        builtup = l.split(',') #Tách dòng hiện tại thành một list builtup bằng cách phân chia theo dấu phẩy
+        builtup[-1] = builtup[-1].strip('\n')  # Loại bỏ ký tự xuống dòng ở cuối mỗi dòng trong list builtup.
         for D in builtup:
             if D == '.':
                 tile = pygame.sprite.Sprite()
                 tile.image = tiles
-                tile.rect = pygame.Rect(x, y, 11, 11)       
+                tile.rect = pygame.Rect(x, y, 12, 12)       
                 walls.add(tile)                    
-                y += 11                              
-            else:
-                y += 11
+                y += 12             #Tăng y sau mỗi tile và di chuyển để đặt tile tiếp theo theo chiều dọc.                 
+            else:                # Nếu phần tử không phải là dấu chấm, chỉ tăng y và không tạo sprite
+                y += 12
         x += 11                             
         y = 0
            
     Map.close()
 
-################################## SET UP MENU GAME#############################################################################   
+################################## SET UP MENU GAME #############################################################################   
 def gameMenu(thisStage):
     '''
     cải thiện menu game bằng cách đặt nền nhạc, và hiển thị tiêu đề cùng với hai lựa chọn:
@@ -218,12 +219,12 @@ def gameMenu(thisStage):
     
     Title = my_font.render('Tank PvP', True, (255, 0, 0)) # set up tiêu đề game màu đỏ
 
-    #Mã tạo hình chữ nhật (text_rect) xung quanh Title, canh giữa theo ngang và ở trên màn hình theo dọc, làm Title nổi bật.
+    #tạo hình chữ nhật (text_rect) xung quanh Title, canh giữa theo chiều ngang ở trên màn hình dọc, làm Title nổi bật.
     text_rect = Title.get_rect(center=(screen.get_width() / 2, screen.get_height() / 4)) 
     # in dòng chữ lên màn hình
     screen.blit(Title, text_rect)
 
-    Start_label = my_font2.render('Start Game', True, (212,212,212))
+    Start_label = my_font2.render('Start Game', True, (212,212,212)) #Tạo surface chứa văn bản "Start Game", tham số True giúp hình ảnh rõ nét hơn
     Exit_label = my_font2.render('Exit Game', True, (212,212,212))
     
     Srect = Rect(210,280,421,339)         #hiệu ứng khi trỏ chuột vào
@@ -235,25 +236,26 @@ def gameMenu(thisStage):
             Opt = 0                                            
             '''
             Nếu vị trí chuột (x, y) nằm trong phạm vi của hình chữ nhật Srect
-            tức là vùng mà label "Start Game" chiếm giữ trên màn hình, chữ "Start Game" sẽ được làm nổi bật
+            tức là vùng mà label "Start Game", "Exit Game"
             '''
             if Srect[0] < x <Srect[2] and Srect[1] < y < Srect[3]: 
                 my_font2.set_underline(True)
                 Start_label = my_font2.render('Start Game', True, (255,255,0)) # nháy màu vàng, phần gạch chân cũng vậy
-                screen.blit(Start_label, (185,280))
+                screen.blit(Start_label, (183,280))
                 pygame.display.flip()
 
                 Opt = 1 #biến Opt được đặt thành 1, label "Start Game" đang được chọn. Khi người chơi nhấp chuột, có thể sẽ có sự kiện diễn ra tùy vào giá trị của Opt.                                                      
                                                                                  
             elif Erect[0] < x < Erect[2] and Erect[1] < y < Erect[3]:           
 
-                my_font2.set_underline(True)
+                my_font2.set_bold(True)
                 Exit_label = my_font2.render('Exit Game', True, (255,0,0))
-                screen.blit(Exit_label, (185, 340))
+                screen.blit(Exit_label, (170, 340))
                 pygame.display.flip()
                 
                 Opt = 2
                 
+            my_font2.set_bold(False) #tắt hiệu ứng gạch dưới
             my_font2.set_underline(False)
             Start_label = my_font2.render('Start Game', True, (212,212,212)) #set up màu cho label Star Game
             Exit_label = my_font2.render('Exit Game', True, (212,212,212))
@@ -261,8 +263,8 @@ def gameMenu(thisStage):
             screen.blit(screenPIC, (0,0))
             screen.blit(Title, (90,120))  # căn giữa Tank2P
             screen.blit(Start_label, (180,280))                 #tọa độ chuỗi Start Game
-            screen.blit(Exit_label, (180, 340))
-            pygame.display.flip()
+            screen.blit(Exit_label, (180, 340))            #blit: viết nội dung lên screen
+            pygame.display.flip()                          #cập nhật nội dung trên screen
             
             for ev in pygame.event.get():
                 if ev.type == QUIT:
@@ -270,7 +272,7 @@ def gameMenu(thisStage):
                     run = False
                     starting = False
                     selecting = False 
-                    battling = False           #các biến được trả về false để kết thúc các trạng thái, các biến ở dòng 213
+                    battling = False           #các biến cục bộ được trả về false để kết thúc các trạng thái
                     end = False                
                     thisStage = False
                     
@@ -298,7 +300,7 @@ def selectionScreen(thisStage):
                                                             
     pygame.mixer.music.load(musicList[1])    # chỉ số [1] cho biết rằng nó đang tải bản nhạc thứ hai trong danh sách
     pygame.mixer.music.set_volume(0.4)      #mức âm lượng được set up ở mức 40%
-    pygame.mixer.music.play(-1)              #phát nhạc mãi mãi
+    pygame.mixer.music.play(-1)              #phát nhạc mãi mãi, nếu hết nhạc thì phát lại tiếp
     
     Opt1 = 0
     Opt2 = 0                                   #Opt1 - Opt2 các cài đặt của player1 - player2
@@ -318,15 +320,15 @@ def selectionScreen(thisStage):
     p2Title = my_font4.render('P2', True, (255,255,0))
     
     instruction = my_font4.render('Use your left and right controls to switch between tanks.', True, (255,255,0))
-    instruction2 = my_font4.render('Press ENTER to start the battle !', True, (255,255,0))
+    instruction2 = my_font4.render('Press ENTER to start the battle !!!', True, (255,255,0))
 
     options = [imageUp_v1,imageUp_v2]                  #tạo danh sách chứa các ảnh của 2 phiên bản tank 
     stats = {0:['3', '6', '3'], 1:['6','3','1']}
     
     DisplaySurf = pygame.Surface((80,80))
-    DisplaySurf.fill((255,255,255))                 #tạo ô nền màu trắng 
+    DisplaySurf.fill((255,212,255))                 #tạo ô nền cho tank
     DisplaySurf2 = pygame.Surface((80,80))
-    DisplaySurf2.fill((255,255,255))
+    DisplaySurf2.fill((255,212,255))
     
     while thisStage:
         for ev in pygame.event.get():
@@ -338,16 +340,16 @@ def selectionScreen(thisStage):
                 end = False
                 thisStage = False
             elif ev.type == KEYDOWN:
-                if ev.key == K_RETURN:
+                if ev.key == K_RETURN: #Khi nhấn phím ENTER, dừng âm nhạc, gọi hàm readMap() để tải bản đồ, sau đó gọi hàm player_classes() với Opt1 và player1, rồi Opt2 và player2; thiết lập selecting và thisStage thành False để chuyển sang giai đoạn khác.
                     pygame.mixer.music.stop()
                     readMap()
                     player_classes(Opt1, player1)
                     player_classes(Opt2, player2)
                     selecting = False
                     thisStage = False
-                elif ev.key == K_a: 
+                elif ev.key == K_a: # đối với player1 sử dụng phím A or D để lựa chọn tank
                     if Opt1 == 0:
-                        Opt1 = 1                                   #long nest if states are unavoidable, since inputs are meant for 2 users
+                        Opt1 = 1                                   
                     else:
                         Opt1 -= 1
                 elif ev.key == K_d:
@@ -355,7 +357,7 @@ def selectionScreen(thisStage):
                         Opt1 = 0
                     else:
                         Opt1 += 1
-                elif ev.key == K_LEFT:
+                elif ev.key == K_LEFT:  #đối với player1 sử dụng phím <-- or --> để lựa chọn tank
                     if Opt2 == 0:
                         Opt2 = 1
                     else:
@@ -366,12 +368,12 @@ def selectionScreen(thisStage):
                     else:
                         Opt2 += 1
                         
-        p1statsHealth = my_font5.render('Health: ' + stats[Opt1][0], True, (212,212,212))
-        p1statsSpeed = my_font5.render('Speed: ' + stats[Opt1][1],True, (212,212,212))
-        p1statsReload = my_font5.render('Reload: ' + stats[Opt1][2], True, (212,212,212))   #these renders needs to be in the loop because as users switch
-        p2statsHealth = my_font5.render('Health: ' + stats[Opt2][0], True, (212,212,212))   #between tanks, the stats info needs to update
-        p2statsSpeed = my_font5.render('Speed: ' + stats[Opt2][1],True, (212,212,212))
-        p2statsReload = my_font5.render('Reload: ' + stats[Opt2][2], True, (212,212,212))
+        p1statsHealth = my_font5.render('Health: ' + stats[Opt1][0], True, (255,212,212))
+        p1statsSpeed = my_font5.render('Speed: ' + stats[Opt1][1],True, (255,212,212))
+        p1statsReload = my_font5.render('Reload: ' + stats[Opt1][2], True, (255,212,212))   #these renders needs to be in the loop because as users switch
+        p2statsHealth = my_font5.render('Health: ' + stats[Opt2][0], True, (255,212,212))   #between tanks, the stats info needs to update
+        p2statsSpeed = my_font5.render('Speed: ' + stats[Opt2][1],True, (255,212,212))
+        p2statsReload = my_font5.render('Reload: ' + stats[Opt2][2], True, (255,212,212))
         
         screen.blit(screenPIC, (0,0))
         screen.blit(Title, (170, 70)) # tọa độ dòng chữ Select Tank
@@ -395,28 +397,32 @@ def selectionScreen(thisStage):
         screen.blit(instructionP1, (70, 290))
         screen.blit(instructionP2, (330, 290))
 
-        screen.blit(instruction, (70, 500)) #tọa độ của dòng chữ "Use your left and right controls to switch between tanks..."
+        screen.blit(instruction, (70, 500)) #tọa độ của dòng chữ "Use your left and right controls..."
         screen.blit(instruction2, (170, 520))
         pygame.display.flip()
-    
+
+################################# SET UP TRẬN ĐẤU ########################################################################
+import math
+# Hàm tính khoảng cách giữa hai điểm
+def distance(point1, point2):
+    return math.sqrt((point1[0] - point2[0]) ** 2 + (point1[1] - point2[1]) ** 2)
+
 def battleScreen(thisStage):
-    #blits the battle, test out sprite collisions, pseudocode are show at the begining
     '''
-    parameters: thisStage, needs to be True to execute the function,
-    return: None, animates the game interaction
+    quản lý màn hình chiến đấu trong game bằng cách xử lý các sự kiện, di chuyển, 
+    cập nhật trạng thái đạn, xử lý va chạm, và hiển thị các đối tượng trên màn hình, kết thúc trò chơi khi người chơi hết máu.
     '''
-    global run, end         #needs to be global because the change to these variable here are local changes
-                            #global update the changes outside of this funciton.
+    global run, end         #biến cục bộ sẽ update các thay đổi của function
     pygame.mixer.music.load(musicList[2])    
     pygame.mixer.music.set_volume(0.4)
     pygame.mixer.music.play(-1)
     
-    timer = 0
+    timer = 0  #Khởi tạo biến đếm để điều chỉnh thời gian nghỉ giữa các lần bắn của người chơi
     timer2 = 0
     
     while thisStage:
-        fps = clock.tick(30)        
-        timer += 1
+        fps = clock.tick(30)  #điều chỉnh fps giúp game mượt hơn      
+        timer += 1  #Mỗi vòng lặp, timer và timer2 tăng lên 1, giúp đếm số lần lặp xảy ra và có thể dùng để kiểm soát thời gian nghỉ giữa các lần bắn
         timer2 += 1
         for ev in pygame.event.get():
             if ev.type == QUIT:
@@ -426,13 +432,17 @@ def battleScreen(thisStage):
                 thisStage = False
                 end = False
                 
-        movement(player1)               #governs the player movement, as well as collision with each other and walls
+        movement(player1)    #xử lý di chuyển, va chạm (p1-p2-tường)
         movement(player2) 
         bullet_update()
-        key = pygame.key.get_pressed()
+        key = pygame.key.get_pressed() #kiêmr tra các phím được nhấn
+
+
+        #Khi người chơi nhấn phím bắn sau hết thời gian cooldown của lần bắn trước, hệ thống sẽ phát âm thanh bắn và tạo viên đạn mới cho người chơi đó
+        #Bộ đếm thời gian (timer cho người chơi 1 và timer2 cho người chơi 2) sẽ được đặt lại về 0 để chuẩn bị cho lần bắn tiếp theo
 
         if key[player1.keys[4]]:
-            if timer >= player1.cooldown:
+            if timer >= player1.cooldown:  
                 shoot.play()
                 bullet(player1)
                 timer = 0
@@ -443,15 +453,18 @@ def battleScreen(thisStage):
                 bullet(player2)
                 timer2 = 0
                 
-        for bullets in bulletgroup:
-            if pygame.sprite.collide_rect(bullets,player1):
+        for bullets in bulletgroup: 
+            if pygame.sprite.collide_rect(bullets,player1): #check viên đạn có trúng p1 không
                 bulletgroup.remove(bullets)
                 player1.health -= 1
-                explode.play()
-                screen.blit(explosion, player1.rect)
-                pygame.display.flip()
-                time.sleep(1)
-                player1.rect.center = spawnpoints[random.randint(0,2)]
+                explode.play() #phát âm thanh vuno
+                screen.blit(explosion, player1.rect) #in hình ảnh vuno tại vị trí p1
+                pygame.display.flip() #update screen để hiển thị hình ảnh vuno
+                time.sleep(1) 
+                # Tìm vị trí respawn cách xa player2 nhất, đẻ lúc random lại vị trí nó không đứng gần player cũ
+                farthest_point = max(spawnpoints, key=lambda point: distance(point, player2.rect.center))
+                player1.rect.center = farthest_point
+        
                 
             if pygame.sprite.collide_rect(bullets,player2):
                 bulletgroup.remove(bullets)
@@ -460,7 +473,9 @@ def battleScreen(thisStage):
                 screen.blit(explosion, player2.rect)
                 pygame.display.flip()
                 time.sleep(1)
-                player2.rect.center = spawnpoints[random.randint(0,2)]
+                # Tìm vị trí respawn cách xa player1 nhất
+                farthest_point = max(spawnpoints, key=lambda point: distance(point, player1.rect.center))
+                player2.rect.center = farthest_point
             if pygame.sprite.spritecollide(bullets,walls,False):
                 explode.play()
                 bulletgroup.remove(bullets)
@@ -477,18 +492,18 @@ def battleScreen(thisStage):
         pygame.display.flip()
         pygame.display.update()
         
-        if player1.health == 0 or player2.health == 0:
+        if player1.health == 0 or player2.health == 0: #nếu 1 trong 2 player hết sạch máu thì kết thúc trò chơi,màn hình kết thúc sẽ hiển thị kết quả tỉ số
             pygame.mixer.music.stop()
             battling = False
             thisStage = False
             endScreen(end)
+            
 
             
 def endScreen(thisStage):
     #determines the winner, calculate scores, shows the end screen, as well as clean up, pseudocode are show at the begining
     '''
-    parameters: thisStage, needs to be true to execute this function
-    returns: None
+    
     '''
     global run, starting, selecting
 
@@ -516,7 +531,7 @@ def endScreen(thisStage):
             scoredata['2'] +=1
 
     scores = open('ProJect_Pygame_Nhom18/BangBang/Tank2P/BangTinhDiem.txt', 'w')
-    scores.write('1,' + str(scoredata['1']) + '\n')         #record the win
+    scores.write('1,' + str(scoredata['1']) + '\n')         
     scores.write('2,' + str(scoredata['2']) + '\n')
     scores.close()
             
@@ -550,12 +565,12 @@ def endScreen(thisStage):
                     pygame.mixer.music.stop()
                     thisStage = False
                 elif ev.key == K_r:
-                    scoredata['1'] = 0        #reset the scores if one player gets mad and wants to restart all over
+                    scoredata['1'] = 0        #nhấn phím R để reset bảng điểm
                     scoredata['2'] = 0
 
     scores = open('ProJect_Pygame_Nhom18/BangBang/Tank2P/BangTinhDiem.txt', 'w')
     scores.write('1,' + str(scoredata['1']) + '\n')
-    scores.write('2,' + str(scoredata['2']) + '\n')         #final recording and updating just to be safe
+    scores.write('2,' + str(scoredata['2']) + '\n')         #update kết quả trong fie txt
     scores.close()
         
     starting = True
