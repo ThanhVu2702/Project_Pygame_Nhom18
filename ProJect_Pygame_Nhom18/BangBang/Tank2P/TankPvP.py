@@ -21,8 +21,8 @@ def writeScorefile():
         if not haveOne:                 #Nếu không có tệp tin, chương trình sẽ tạo một tệp mới
         
             scores = open('BangTinhDiem.txt', 'w')   
-            scores.write('P1,0' + '\n')
-            scores.write('P2,0' + '\n')
+            scores.write('Player1: 0' + '\n')
+            scores.write('Player2: 0' + '\n')
             scores.close()
             scoredata = {}
         ''' 
@@ -463,7 +463,7 @@ def battleScreen(thisStage):
                 pygame.display.flip() #update screen để hiển thị hình ảnh vuno
                 time.sleep(1) 
 
-                # Tìm vị trí respawn cách xa player2 nhất, đẻ lúc random lại vị trí nó không đứng gần player cũ
+                # Tìm vị trí respawn cách xa player2 nhất, để lúc random lại vị trí nó không đứng gần player cũ
                 farthest_point = max(spawnpoints, key=lambda point: distance(point, player2.rect.center))
                 player1.rect.center = farthest_point
         
@@ -487,10 +487,10 @@ def battleScreen(thisStage):
                 pygame.sprite.spritecollide(bullets,bulletgroup, True)
 
 
-        screen.blit(background, (0,0))
+        screen.blit(background, (0,0)) #in background đè lên toàn bộ screen
         walls.draw(screen)
         players.draw(screen)
-        bulletgroup.draw(screen)
+        bulletgroup.draw(screen) #các viên đạn được bắn ra
         drawPlayerHealth(player1)
         drawPlayerHealth(player2)
         pygame.display.flip()
@@ -503,11 +503,10 @@ def battleScreen(thisStage):
             endScreen(end)
             
 
-            
-def endScreen(thisStage):
-    #determines the winner, calculate scores, shows the end screen, as well as clean up, pseudocode are show at the begining
+########################### SET UP MÀN HÌNH CUỐI - KHI TRẬN CHIẾN KẾT THÚC  ###########################################################            
+def endScreen(thisStage): 
     '''
-    
+    xác định người chiến thắng, tính điểm, hiển thị màn hình kết thúc và kết thúc trò chơi. 
     '''
     global run, starting, selecting
 
@@ -515,47 +514,48 @@ def endScreen(thisStage):
     pygame.mixer.music.set_volume(0.4)
     pygame.mixer.music.play(-1)
     
-    bulletgroup.empty()     #delete all remaining bullets 
-    walls.empty()               #delete tiles since map will be redrawn
-
+    bulletgroup.empty()     
+    walls.empty()               
+    
+    #đọc từng dòng của tệp tin và tách dữ liệu bằng dấu phẩy (,) để lấy ra thông tin điểm số
     scores = open('ProJect_Pygame_Nhom18/BangBang/Tank2P/BangTinhDiem.txt', 'r')
     for l in scores:
-        dataFields = l.split(',')
+        dataFields = l.split(':')
         dataFields[-1] = dataFields[-1].strip('\n')
-        scoredata[dataFields[0]] = int(dataFields[1])               #read the score cvs file, update scoredata
+        scoredata[dataFields[0]] = int(dataFields[1]) #dictionary chứa các điểm số, key là thông tin được đọc từ tệp và value được chuyển thành số nguyên              
     scores.close()
     
-    winner = max(player1.health,player2.health)     #use remaining health to determine the winner
-    
+    winner = max(player1.health,player2.health)   #người chơi nào hết sạch máu sau trận chiến thì người đó thua
     if winner == player1.health:
             WinnerTitle =  my_font2.render('PLAYER 1 WINS', True, (255,255,0))
-            scoredata['1'] +=1                                                      #whoever wins gets 1 point
+            scoredata['Player1'] +=1                    # =1 điểm cho người chơi thắng                              
     else:
             WinnerTitle = my_font2.render('PLAYER 2 WINS', True, (255,255,0))
-            scoredata['2'] +=1
+            scoredata['Player2'] +=1
 
+    # mở tệp trong chế độ ghi (mode 'w': write), ghi điểm số được cập nhật của cả hai người chơi và sau đó đóng tệp.
     scores = open('ProJect_Pygame_Nhom18/BangBang/Tank2P/BangTinhDiem.txt', 'w')
-    scores.write('1,' + str(scoredata['1']) + '\n')         
-    scores.write('2,' + str(scoredata['2']) + '\n')
+    scores.write('Player1,' + str(scoredata['Player1']) + '\n')         
+    scores.write('Player2,' + str(scoredata['Player2']) + '\n')
     scores.close()
             
     Title = my_font3.render('END OF THE MATCH', True, (255,0,0))
-    scoreTitle = my_font2.render('Scores', True, (212,212,212))
+    scoreTitle = my_font2.render('Scores', True, (255,212,255))
     instruction = my_font4.render('Press R to reset scores!', True, (255,255,0))
     instruction2 = my_font4.render('Press ENTER to return to game menu.', True, (255,255,0))
 
     while thisStage:
-        p1Scores = my_font2.render('Player 1:  ' +str(scoredata['1']), True, (255,255,255))
-        p2Scores = my_font2.render('Player 2:  '+ str(scoredata['2']), True, (255,255,255))
+        p1Scores = my_font2.render('Player 1: ' +str(scoredata['Player1']), True, (9,255,212))
+        p2Scores = my_font2.render('Player 2: '+ str(scoredata['Player2']), True, (9,255,212))
         #set up tọa độ vị trí căn lề cho các text
         screen.blit(screenPIC, (0,0))
         screen.blit(Title, (60,50))
-        screen.blit(WinnerTitle, (155,200))
-        screen.blit(scoreTitle, (245,280))
-        screen.blit(p1Scores, (60,340))
-        screen.blit(p2Scores, (350,340))
-        screen.blit(instruction, (230, 480))
-        screen.blit(instruction2, (170,500))
+        screen.blit(WinnerTitle, (145,200))
+        screen.blit(scoreTitle, (240,280))
+        screen.blit(p1Scores, (50,340))
+        screen.blit(p2Scores, (340,340))
+        screen.blit(instruction, (210, 480))
+        screen.blit(instruction2, (150,500))
         pygame.display.flip()
         
         for ev in pygame.event.get():
@@ -569,38 +569,38 @@ def endScreen(thisStage):
                     pygame.mixer.music.stop()
                     thisStage = False
                 elif ev.key == K_r:
-                    scoredata['1'] = 0        #nhấn phím R để reset bảng điểm
-                    scoredata['2'] = 0
+                    scoredata['Player1'] = 0        #nhấn phím R để reset bảng điểm
+                    scoredata['Player2'] = 0
 
     scores = open('ProJect_Pygame_Nhom18/BangBang/Tank2P/BangTinhDiem.txt', 'w')
-    scores.write('1,' + str(scoredata['1']) + '\n')
-    scores.write('2,' + str(scoredata['2']) + '\n')         #update kết quả trong fie txt
+    scores.write('Player1: ' + str(scoredata['Player1']) + '\n')
+    scores.write('Player2: ' + str(scoredata['Player2']) + '\n')         #update kết quả trong fie txt
     scores.close()
         
     starting = True
     selecting = True
     
 pygame.init()
-pygame.mixer.init(44100, -16, 2, 2048)
-clock = pygame.time.Clock()
+pygame.mixer.init(44100, -16, 2, 2048) #set up chất lựơng âm thanh
+clock = pygame.time.Clock() #điều chỉnh tốc độ của trò chơi, thời gian chờ,...
 
-colours = pygame.color.THECOLORS
+colours = pygame.color.THECOLORS # dictionary chứa màu sắc tiêu chuẩn của Pygame
 my_font = pygame.font.SysFont('Verdana', 100)
 my_font2 = pygame.font.SysFont('moolboran', 66)
 my_font3 = pygame.font.SysFont('andalus', 72)      #setup Font chữ
 my_font4 = pygame.font.SysFont('candara', 20)
 my_font5 = pygame.font.SysFont('arial', 16)
 
-size = (605, 540)
+size = (605, 540) #kích thước cửa sổ game
 screen = pygame.display.set_mode(size)
 screenPIC = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/Tank2P/picture/anhnen.png')
-pygame.display.set_caption("Tank Moba PvP")              #setup nền
-background = pygame.Surface(size)
+pygame.display.set_caption("Tank Moba PvP")              #đặt tiêu đề cửa sổ game
+background = pygame.Surface(size) # tạo một đối tượng Surface để làm nền, sau đó "convert" nó để cải thiện hiệu suất hiển thị trên màn hình.
 background = background.convert()
 background.fill(colours['grey']) #màu nền của map trong game
 
 explode = pygame.mixer.Sound('ProJect_Pygame_Nhom18/BangBang/Tank2P/bum.ogg')
-shoot = pygame.mixer.Sound('ProJect_Pygame_Nhom18/BangBang/Tank2P/music/fireMusic.mp3')          #setup music game
+shoot = pygame.mixer.Sound('ProJect_Pygame_Nhom18/BangBang/Tank2P/music/fireMusic.mp3')          
 musicList = ['ProJect_Pygame_Nhom18/BangBang/Tank2P/music/endMusic.mp3','ProJect_Pygame_Nhom18/BangBang/Tank2P/music/selectSong.mp3','ProJect_Pygame_Nhom18/BangBang/Tank2P/mbattle.ogg','ProJect_Pygame_Nhom18/BangBang/Tank2P/music/endMusic.mp3']
 
 maps = ['ProJect_Pygame_Nhom18/BangBang/Tank2P/map1.txt', 'ProJect_Pygame_Nhom18/BangBang/Tank2P/map2.txt', 'ProJect_Pygame_Nhom18/BangBang/Tank2P/map3.txt']
@@ -617,45 +617,46 @@ imageDown_v2 = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/Tank2P/picture/
 imageRight_v2 = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/Tank2P/picture/tank2 right.png')
 imageLeft_v2 = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/Tank2P/picture/tank2 left.png')
 
+#Hai danh sách chứa hình ảnh đại diện cho các version khác nhau của người chơi và các nhiều hướng khác nhau
 ver1 = [imageUp_v1,imageDown_v1,imageRight_v1,imageLeft_v1]
 ver2 = [imageUp_v2,imageDown_v2,imageRight_v2,imageLeft_v2]
-spawnpoints = [(30,30),(40,390),(560,130),(560,390)]                
+spawnpoints = [(30,30),(40,390),(560,130),(560,390)]  #List chứa các cặp tuple, mỗi tuple là một điểm xuất phát của viên đạn trên màn hình.              
 
-#pygame.sprite is very useful for organizing and storing info
+
 players = pygame.sprite.Group()
-
+#Tạo hai đối tượng người chơi là các sprite có hình chữ nhật xác định vị trí và kích thước, hướng di chuyển trên màn hình
 player1 = pygame.sprite.Sprite()
-player1.rect = pygame.Rect((20, 20),(24,24))                        #rect is used for collision detection
-player1.direction = 'up'                                            #starting position is up
-player1.keys = (K_a, K_d, K_w, K_s,K_4)                             #stores the keys needed to use
+player1.rect = pygame.Rect((20, 20),(24,24))                        
+player1.direction = 'up'                                            
+player1.keys = (K_a, K_d, K_w, K_s,K_4)    # Player 1 sử dụng phím W A S D để di chuyển và phím bắn đạn là phím 4                   
 
 player2 = pygame.sprite.Sprite()
 player2.rect = pygame.Rect((560, 390), (24,24))
 player2.direction = 'up'
-player2.keys = (K_LEFT, K_RIGHT, K_UP, K_DOWN,K_l)
+player2.keys = (K_LEFT, K_RIGHT, K_UP, K_DOWN,K_l) # Player 2 sử dụng phím LEFT RIGHT UP DOWN để di chuyển và phím bắn đạn là phím l
 
-players.add(player1)
+players.add(player1) #phương thức add thêm player 1 & 2 vào nhóm player
 players.add(player2)
 
 bulletgroup = pygame.sprite.Group()
-walls = pygame.sprite.Group()                       #create the group for bullets and tiles
+walls = pygame.sprite.Group()                       
 
             
 run = True
-starting = True                     #control variables for functions and loops
+starting = True                     
 selecting = True
 battling = True
 end = True
 
 
-writeScorefile()
-scoredata = {}
+writeScorefile() #ghi điểm số ra tệp txt
+scoredata = {} #Khởi tạo một dictionary rỗng để ưu trữ dữ liệu điểm số
 
 while run:
     fps = clock.tick(30)
 
-    gameMenu(starting)
-    selectionScreen(selecting)
+    gameMenu(starting) # hàm hiển thị menu trò chơi khi trò chơi bắt đầu
+    selectionScreen(selecting) #hiển thị màn hình chọn tank 
     battleScreen(battling)
     
    

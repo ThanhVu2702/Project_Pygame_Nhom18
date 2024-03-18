@@ -1,3 +1,4 @@
+import os 
 import pgzrun, random
 from random import randint
 
@@ -93,4 +94,14 @@ def draw():
       tank.draw()
       item.draw()
       rock.draw()
+
+# Trước khi chạy game, set up vị trí cho cửa sổ lúc nó hiện lên sẽ nằm phía trên và ở giữa window
+window_position = "{},{}".format(
+    (os.get_terminal_size().columns - WIDTH) // 2,
+    (os.get_terminal_size().lines - HEIGHT) // 2
+)
+
+os.environ['SDL_VIDEO_CENTERED'] = '1'
+os.environ['SDL_VIDEO_WINDOW_POS'] = window_position
+
 pgzrun.go()
