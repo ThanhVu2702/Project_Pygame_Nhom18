@@ -454,6 +454,7 @@ def battleScreen(thisStage):
                 timer2 = 0
                 
         for bullets in bulletgroup: 
+            
             if pygame.sprite.collide_rect(bullets,player1): #check viên đạn có trúng p1 không
                 bulletgroup.remove(bullets)
                 player1.health -= 1
@@ -461,6 +462,7 @@ def battleScreen(thisStage):
                 screen.blit(explosion, player1.rect) #in hình ảnh vuno tại vị trí p1
                 pygame.display.flip() #update screen để hiển thị hình ảnh vuno
                 time.sleep(1) 
+
                 # Tìm vị trí respawn cách xa player2 nhất, đẻ lúc random lại vị trí nó không đứng gần player cũ
                 farthest_point = max(spawnpoints, key=lambda point: distance(point, player2.rect.center))
                 player1.rect.center = farthest_point
@@ -473,9 +475,11 @@ def battleScreen(thisStage):
                 screen.blit(explosion, player2.rect)
                 pygame.display.flip()
                 time.sleep(1)
+
                 # Tìm vị trí respawn cách xa player1 nhất
                 farthest_point = max(spawnpoints, key=lambda point: distance(point, player1.rect.center))
                 player2.rect.center = farthest_point
+
             if pygame.sprite.spritecollide(bullets,walls,False):
                 explode.play()
                 bulletgroup.remove(bullets)
