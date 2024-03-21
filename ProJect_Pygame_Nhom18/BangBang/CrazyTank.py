@@ -95,7 +95,7 @@ def draw():
       item.draw()
       rock.draw()
 
-# Trước khi chạy game, set up vị trí cho cửa sổ lúc nó hiện lên sẽ nằm phía trên và ở giữa window
+# Trước khi chạy game, set up vị trí cho cửa sổ lúc nó hiện lên sẽ nằm phía trên và ở giữa
 window_position = "{},{}".format(
     (os.get_terminal_size().columns - WIDTH) // 2,
     (os.get_terminal_size().lines - HEIGHT) // 2
