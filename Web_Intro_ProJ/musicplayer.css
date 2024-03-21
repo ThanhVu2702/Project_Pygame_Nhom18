@@ -1,0 +1,856 @@
+@media only screen and (min-width: 1600px)  {
+    .content .left .disc
+    {
+        position: relative;
+        margin-top: 15%;
+        margin-left: 15%;
+        
+        height: 500px;
+        width: 500px;
+        
+        animation: rotate 20s linear infinite;
+        animation: fadeIn 5s;
+        
+    }
+    @keyframes fadeIn {
+        0% { opacity: 0; }
+        100% { opacity: 1; }
+    }
+    .content .left .disc .center img
+    {
+        position: absolute;
+        top: 5%;
+        left: 5%;
+        height: 90%;
+        width: 90%;
+        animation: rotate 20s linear infinite;
+    }
+    @keyframes rotate {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+      /*.parent {
+        position: relative;
+        top: -350px;
+        left: 50%;
+        width: 260px;
+        animation: fly 3s linear infinite, fadeOut 3s linear infinite;
+      }
+      @keyframes fly {
+        0% {
+          left: 50%;
+          top: -350px;
+        }
+        100% {
+          top: -500px;
+          left: 100%;   
+        }
+      }
+      @keyframes fadeOut {
+        0% { opacity: 1; }
+        100% { opacity: 0; }
+      }
+      .parent, .child-level-1, .child-level-2 {
+        display: flex;
+        justify-content: space-between;
+      }
+      
+      .child-level-1, .child-level-2 {
+        position: relative;
+        width: 120px;
+      }
+
+      .child {
+        height: 40px;
+        width: 50px;
+        border-radius: 50%;
+      }
+      
+      .child.child-1, .child.child-1::after, .child.child-2, .child.child-2::after,
+      .child.child-2::before, .child.child-4, .child.child-4::before, .child.child-4::after {
+        animation: switchcolor 2s linear infinite
+      }
+      @keyframes switchcolor {
+        0% { 
+          background-image: linear-gradient(
+            135deg,
+            #0a50e6,
+            #0ae44b
+        );
+        }
+        25% { 
+          background-image: linear-gradient(
+            135deg,
+            #a1e20a,
+            #ece90f
+        );
+        }
+        50% { 
+          background-image: linear-gradient(
+            135deg,
+            #daa30b,
+            #e65ad3
+        );
+        }
+        100% { 
+          background-image: linear-gradient(
+            135deg,
+            #ad0fec,
+            #da0b15
+        );
+        }
+      }
+
+    .child::before, .child::after {
+        position: absolute;
+        top: -80px;
+    }
+
+    .child::after, .child.child-4::before {
+        content: "";
+        height: 100px;
+        width: 10px;
+    }
+
+    .child.child-1::after, .child.child-3::after {
+        right: 70px;
+    }
+
+    .child.child-2::after, .child.child-4::after {
+        right: 0;
+    }
+
+    .child.child-2::before {
+        content: "";
+        height: 10px;
+        width: 60px;
+        right: 10px;
+    }
+    .content .left .musiccontrol
+    {
+        margin-left: 10%;
+        padding-top: 5%;
+        padding-bottom: 5%;
+        width: 80%;
+        height: 30%;
+        background-color: #3c3c3c;
+        overflow: hidden;
+        border-radius: 15px;
+        box-shadow: 5px 10px 8px #504f4f;
+    }
+    .content .left .musiccontrol .time
+    {
+        display: flex;
+        justify-content: center;
+        color: white;
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+    .content .left .musiccontrol .control
+    {
+        height: 50%;
+        width: 100%;
+        padding-left: 35%;
+        padding-top: 3%;
+    }
+    .content .left .musiccontrol .play-music
+    {
+        float: left;
+        height: 50px;
+        width: 50px;
+        background-color: white;
+        border-radius: 50%;
+        margin-left: 15px;
+    }
+    .content .left .musiccontrol .forward
+    {
+        float: left;
+        height: 50px;
+        width: 50px;
+        background-color: white;
+        border-radius: 50%;
+        margin-left: 15px;
+    }
+    .content .left .musiccontrol .backward
+    {
+        float: left;
+        height: 50px;
+        width: 50px;
+        background-color: white;
+        border-radius: 50%;
+    }
+
+    .content .left .musiccontrol #seekbar
+    {
+        -webkit-appearance: none;
+        margin-left: 10%;
+        width: 80%;
+        height: 15px;
+        cursor: pointer;
+        border-radius: 15px;
+        overflow: hidden;
+    }
+    .content .left .musiccontrol #seekbar::-webkit-slider-thumb
+    {
+        -webkit-appearance: none;
+        width: 10px;
+        height: 25px;
+        background-color: #2479c9;
+        box-shadow: -400px 0 0 400px #66abec;        
+    }*/
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1599px) 
+{
+  .content .left .disc
+  {
+      position: relative;
+      margin-top: 5%;
+      margin-left: 5%;
+      height: 400px;
+      width: 400px;
+      animation: rotate 20s linear infinite;
+      animation: fadeIn 5s;
+  }
+  @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+  }
+  
+  .content .left .disc .center img
+  {
+      position: absolute;
+      top: 5%;
+      left: 5%;
+      height: 90%;
+      width: 90%;
+      animation: rotate 20s linear infinite;
+  }
+  @keyframes rotate {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+    /*.parent {
+      position: relative;
+      top: -350px;
+      left: 50%;
+      width: 200px;
+      animation: fly 3s linear infinite, fadeOut 3s linear infinite;
+    }
+    @keyframes fly {
+      0% {
+        left: 50%;
+        top: -350px;
+      }
+      100% {
+        top: -500px;
+        left: 100%;   
+      }
+    }
+    @keyframes fadeOut {
+      0% { opacity: 1; }
+      100% { opacity: 0; }
+    }
+    .parent, .child-level-1, .child-level-2 {
+      display: flex;
+      justify-content: space-between;
+    }
+    
+    .child-level-1, .child-level-2 {
+      position: relative;
+      width: 120px;
+    }
+
+    .child {
+      height: 40px;
+      width: 50px;
+      border-radius: 50%;
+    }
+    
+    .child.child-1, .child.child-1::after, .child.child-2, .child.child-2::after,
+      .child.child-2::before, .child.child-4, .child.child-4::before, .child.child-4::after {
+        animation: switchcolor 2s linear infinite
+      }
+      @keyframes switchcolor {
+        0% { 
+          background-image: linear-gradient(
+            135deg,
+            #0a50e6,
+            #0ae44b
+        );
+        }
+        25% { 
+          background-image: linear-gradient(
+            135deg,
+            #a1e20a,
+            #ece90f
+        );
+        }
+        50% { 
+          background-image: linear-gradient(
+            135deg,
+            #daa30b,
+            #e65ad3
+        );
+        }
+        100% { 
+          background-image: linear-gradient(
+            135deg,
+            #ad0fec,
+            #da0b15
+        );
+        }
+      }
+
+
+  .child::before, .child::after {
+      position: absolute;
+      top: -80px;
+  }
+
+  .child::after, .child.child-4::before {
+      content: "";
+      height: 100px;
+      width: 10px;
+  }
+
+  .child.child-1::after, .child.child-3::after {
+      right: 70px;
+  }
+
+  .child.child-2::after, .child.child-4::after {
+      right: 0;
+  }
+
+  .child.child-2::before {
+      content: "";
+      height: 10px;
+      width: 60px;
+      right: 10px;
+  }
+  .content .left .musiccontrol
+  {
+      margin-left: 5%;
+      padding-top: 5%;
+      padding-bottom: 5%;
+      width: 80%;
+      height: 30%;
+      background-color: #3c3c3c;
+      overflow: hidden;
+      border-radius: 15px;
+      box-shadow: 5px 10px 8px #504f4f;
+  }
+  .content .left .musiccontrol .time
+  {
+      display: flex;
+      justify-content: center;
+      color: white;
+      margin-top: 15px;
+      margin-bottom: 15px;
+  }
+  .content .left .musiccontrol .control
+  {
+      height: 50%;
+      width: 100%;
+      padding-left: 30%;
+      padding-top: 3%;
+  }
+  .content .left .musiccontrol .play-music
+  {
+      float: left;
+      height: 50px;
+      width: 50px;
+      background-color: white;
+      border-radius: 50%;
+      margin-left: 15px;
+  }
+  .content .left .musiccontrol .forward
+  {
+      float: left;
+      height: 50px;
+      width: 50px;
+      background-color: white;
+      border-radius: 50%;
+      margin-left: 15px;
+  }
+  .content .left .musiccontrol .backward
+  {
+      float: left;
+      height: 50px;
+      width: 50px;
+      background-color: white;
+      border-radius: 50%;
+  }
+
+  .content .left .musiccontrol #seekbar
+  {
+      -webkit-appearance: none;
+      margin-left: 10%;
+      width: 80%;
+      height: 15px;
+      cursor: pointer;
+      border-radius: 15px;
+      overflow: hidden;
+  }
+  .content .left .musiccontrol #seekbar::-webkit-slider-thumb
+  {
+      -webkit-appearance: none;
+      width: 10px;
+      height: 25px;
+      background-color: #2479c9;
+      box-shadow: -400px 0 0 400px #66abec;        
+  }*/
+}
+
+@media only screen and (min-width: 601px) and (max-width: 1023px)
+{
+  .content .left .disc
+  {
+      position: relative;
+      margin-top: 5%;
+      margin-left: 5%;
+      background-color: black;
+      height: 300px;
+      width: 300px;
+      animation: rotate 20s linear infinite;
+      animation: fadeIn 5s;
+      box-shadow: 5px 10px 8px #2c2b2b;
+  }
+  @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+  }
+  .content .left .disc .center img
+  {
+      position: absolute;
+      top: 5%;
+      left: 5%;
+      height: 90%;
+      width: 90%;
+      animation: rotate 20s linear infinite;
+  }
+  @keyframes rotate {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+    /*.parent {
+      position: relative;
+      top: -350px;
+      left: 50%;
+      width: 200px;
+      animation: fly 3s linear infinite, fadeOut 3s linear infinite;
+    }
+    @keyframes fly {
+      0% {
+        left: 50%;
+        top: -350px;
+      }
+      100% {
+        top: -500px;
+        left: 100%;   
+      }
+    }
+    @keyframes fadeOut {
+      0% { opacity: 1; }
+      100% { opacity: 0; }
+    }
+    .parent, .child-level-1, .child-level-2 {
+      display: flex;
+      justify-content: space-between;
+    }
+    
+    .child-level-1, .child-level-2 {
+      position: relative;
+      width: 120px;
+    }
+
+    .child {
+      height: 40px;
+      width: 50px;
+      border-radius: 50%;
+    }
+    
+    .child.child-1, .child.child-1::after, .child.child-2, .child.child-2::after,
+      .child.child-2::before, .child.child-4, .child.child-4::before, .child.child-4::after {
+        animation: switchcolor 2s linear infinite
+      }
+      @keyframes switchcolor {
+        0% { 
+          background-image: linear-gradient(
+            135deg,
+            #0a50e6,
+            #0ae44b
+        );
+        }
+        25% { 
+          background-image: linear-gradient(
+            135deg,
+            #a1e20a,
+            #ece90f
+        );
+        }
+        50% { 
+          background-image: linear-gradient(
+            135deg,
+            #daa30b,
+            #e65ad3
+        );
+        }
+        100% { 
+          background-image: linear-gradient(
+            135deg,
+            #ad0fec,
+            #da0b15
+        );
+        }
+      }
+
+
+  .child::before, .child::after {
+      position: absolute;
+      top: -80px;
+  }
+
+  .child::after, .child.child-4::before {
+      content: "";
+      height: 100px;
+      width: 10px;
+  }
+
+  .child.child-1::after, .child.child-3::after {
+      right: 70px;
+  }
+
+  .child.child-2::after, .child.child-4::after {
+      right: 0;
+  }
+
+  .child.child-2::before {
+      content: "";
+      height: 10px;
+      width: 60px;
+      right: 10px;
+  }
+  .content .left .musiccontrol
+  {
+      margin-left: 5%;
+      padding-top: 5%;
+      padding-bottom: 5%;
+      width: 80%;
+      height: 30%;
+      background-color: #3c3c3c;
+      overflow: hidden;
+      border-radius: 15px;
+      box-shadow: 5px 10px 8px #504f4f;
+  }
+  .content .left .musiccontrol .time
+  {
+      display: flex;
+      justify-content: center;
+      color: white;
+      margin-top: 15px;
+      margin-bottom: 15px;
+  }
+  .content .left .musiccontrol .control
+  {
+      height: 50%;
+      width: 100%;
+      padding-left: 18%;
+      padding-top: 3%;
+  }
+  .content .left .musiccontrol .play-music
+  {
+      float: left;
+      height: 50px;
+      width: 50px;
+      background-color: white;
+      border-radius: 50%;
+      margin-left: 15px;
+  }
+  .content .left .musiccontrol .forward
+  {
+      float: left;
+      height: 50px;
+      width: 50px;
+      background-color: white;
+      border-radius: 50%;
+      margin-left: 15px;
+  }
+  .content .left .musiccontrol .backward
+  {
+      float: left;
+      height: 50px;
+      width: 50px;
+      background-color: white;
+      border-radius: 50%;
+  }
+
+  .content .left .musiccontrol #seekbar
+  {
+      -webkit-appearance: none;
+      margin-left: 10%;
+      width: 80%;
+      height: 15px;
+      cursor: pointer;
+      border-radius: 15px;
+      overflow: hidden;
+  }
+  .content .left .musiccontrol #seekbar::-webkit-slider-thumb
+  {
+      -webkit-appearance: none;
+      width: 10px;
+      height: 25px;
+      background-color: #2479c9;
+      box-shadow: -400px 0 0 400px #66abec;        
+  }*/
+}
+
+@media only screen and (max-width: 600px)
+{
+  .content .left .disc
+  {
+      position: relative;
+      margin-top: 5%;
+      margin-left: 5%;
+      background-color: black;
+      height: 350px;
+      width: 350px;
+      border-radius: 50%;
+      animation: rotate 20s linear infinite;
+      animation: fadeIn 5s;
+      box-shadow: 5px 10px 8px #2c2b2b;
+  }
+  .content .left .disc:hover
+  {
+    height: 355px;
+    width: 355px;
+    border: 1px solid;
+    box-shadow: inset 0 0 20px rgba(255, 255, 255, .5), 0 0 20px rgba(255, 255, 255, .2);
+    outline-color: rgba(255, 255, 255, 0);
+    outline-offset: 15px;
+    text-shadow: 1px 1px 2px #427388; 
+  }
+  @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+  }
+  .content .left .disc .center
+  {
+      position: absolute;
+      top: 14%;
+      left: 14%;
+      transform: translate(-50%, -50%);
+      height: 250px;
+      width: 250px;
+      background-image: linear-gradient(
+            135deg,
+            #e60a0a,
+            #e6ab0a,
+            #e6e20a,
+            #0ae44b,
+            #2b0ae4
+      );
+      animation: rotate 20s linear infinite;
+      border-radius: 50%;
+  }
+  .content .left .disc .center img
+  {
+      position: absolute;
+      top: 5%;
+      left: 5%;
+      height: 90%;
+      width: 90%;
+      border-radius: 50%;
+      animation: rotate 20s linear infinite;
+  }
+  @keyframes rotate {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+    /*.parent {
+      position: relative;
+      top: -350px;
+      left: 50%;
+      width: 200px;
+      animation: fly 3s linear infinite, fadeOut 3s linear infinite;
+    }
+    @keyframes fly {
+      0% {
+        left: 50%;
+        top: -350px;
+      }
+      100% {
+        top: -500px;
+        left: 100%;   
+      }
+    }
+    @keyframes fadeOut {
+      0% { opacity: 1; }
+      100% { opacity: 0; }
+    }
+    .parent, .child-level-1, .child-level-2 {
+      display: flex;
+      justify-content: space-between;
+    }
+    
+    .child-level-1, .child-level-2 {
+      position: relative;
+      width: 120px;
+    }
+
+    .child {
+      height: 40px;
+      width: 50px;
+      border-radius: 50%;
+    }
+    
+    .child.child-1, .child.child-1::after, .child.child-2, .child.child-2::after,
+      .child.child-2::before, .child.child-4, .child.child-4::before, .child.child-4::after {
+        animation: switchcolor 2s linear infinite
+      }
+      @keyframes switchcolor {
+        0% { 
+          background-image: linear-gradient(
+            135deg,
+            #0a50e6,
+            #0ae44b
+        );
+        }
+        25% { 
+          background-image: linear-gradient(
+            135deg,
+            #a1e20a,
+            #ece90f
+        );
+        }
+        50% { 
+          background-image: linear-gradient(
+            135deg,
+            #daa30b,
+            #e65ad3
+        );
+        }
+        100% { 
+          background-image: linear-gradient(
+            135deg,
+            #ad0fec,
+            #da0b15
+        );
+        }
+      }
+
+
+  .child::before, .child::after {
+      position: absolute;
+      top: -80px;
+  }
+
+  .child::after, .child.child-4::before {
+      content: "";
+      height: 100px;
+      width: 10px;
+  }
+
+  .child.child-1::after, .child.child-3::after {
+      right: 70px;
+  }
+
+  .child.child-2::after, .child.child-4::after {
+      right: 0;
+  }
+
+  .child.child-2::before {
+      content: "";
+      height: 10px;
+      width: 60px;
+      right: 10px;
+  }
+  .content .left .musiccontrol
+  {
+      margin-left: 20%;
+      padding-top: 5%;
+      padding-bottom: 5%;
+      width: 60%;
+      height: 30%;
+      background-color: #3c3c3c;
+      overflow: hidden;
+      border-radius: 15px;
+      box-shadow: 5px 10px 8px #504f4f;
+  }
+  .content .left .musiccontrol .time
+  {
+      display: flex;
+      justify-content: center;
+      color: white;
+      margin-top: 15px;
+      margin-bottom: 15px;
+  }
+  .content .left .musiccontrol .control
+  {
+      height: 50%;
+      width: 100%;
+      padding-left: 18%;
+      padding-top: 3%;
+  }
+  .content .left .musiccontrol .play-music
+  {
+      float: left;
+      height: 50px;
+      width: 50px;
+      background-color: white;
+      border-radius: 50%;
+      margin-left: 15px;
+  }
+  .content .left .musiccontrol .forward
+  {
+      float: left;
+      height: 50px;
+      width: 50px;
+      background-color: white;
+      border-radius: 50%;
+      margin-left: 15px;
+  }
+  .content .left .musiccontrol .backward
+  {
+      float: left;
+      height: 50px;
+      width: 50px;
+      background-color: white;
+      border-radius: 50%;
+  }
+
+  .content .left .musiccontrol #seekbar
+  {
+      -webkit-appearance: none;
+      margin-left: 10%;
+      width: 80%;
+      height: 15px;
+      cursor: pointer;
+      border-radius: 15px;
+      overflow: hidden;
+  }
+  .content .left .musiccontrol #seekbar::-webkit-slider-thumb
+  {
+      -webkit-appearance: none;
+      width: 10px;
+      height: 25px;
+      background-color: #2479c9;
+      box-shadow: -400px 0 0 400px #66abec;        
+  }*/
+}

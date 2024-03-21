@@ -1,0 +1,107 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="musicplayer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <link rel="stylesheet" href="slideshow.css">
+    <script src="slideshow.js"></script>
+    <title>Home</title>
+</head>
+<body onload="showSlides()">
+    <nav class="nav-bar">
+        <ul class="menu">
+            <li class="menu-item"><a href="index.html" style="color: #2479c9;">Home</a></li>
+            <li class="menu-item"><a href="Instruction.html">Instruction</a></li>
+            <li class="menu-item"><a href="download.html">Download</a></li>
+            <li class="menu-item"><a href="Detailsus.html">Developer Details</a></li>
+        </ul>
+        <div class="ribbon"></div>
+    </nav>
+    <div class="content">        
+        <div class="left">
+            <div class="disc">
+                <div class="center">
+                    <img src="Tank.jpg">
+                </div>
+            </div>
+            <div class="parent">
+                <div class="child-level-1">
+                  <div class="child child-1"></div>
+                  <div class="child child-2"></div>
+                </div>
+            </div>
+        </div>       
+        <div class="right">
+            <div class="title"><h1>Welcome to Combat Tank- Welcome to battlefield</h1></div>
+            <div class="slideshow-container">
+
+                <!-- Full-width images with number and caption text -->
+                <div class="mySlides fade">
+                  <div class="numbertext">1 / 4</div>
+                  <img src="tankbg1.jpg" style="width:100%">
+                  <div class="text">Enjoy real battlefield on your PC</div>
+                </div>
+              
+                <div class="mySlides fade">
+                  <div class="numbertext">2 / 4</div>
+                  <img src="tankbg2.jpg" style="width:100%">
+                  <div class="text">You can play with AI</div>
+                </div>
+              
+                <div class="mySlides fade">
+                  <div class="numbertext">3 / 4</div>
+                  <img src="tankbg3.jpg" style="width:100%">
+                  <div class="text">You can combat with your friend</div>
+                </div>
+
+                <div class="mySlides fade">
+                  <div class="numbertext">4 / 4</div>
+                  <img src="tankbg4.jpg" style="width:100%">
+                  <div class="text">Survival mode is available</div>
+                </div>
+              
+                <!-- Next and previous buttons -->
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+              </div>
+              <br>
+              
+              <!-- The dots/circles -->
+              <div style="text-align:center">
+                <span class="dot" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+                <span class="dot" onclick="currentSlide(3)"></span>
+                <span class="dot" onclick="currentSlide(4)"></span>
+              </div>
+            </div>        
+    </div>
+    <footer class="footer">
+        <div class="ribbon1"></div>
+        <div class="part1">
+            <p>Name: Thiên Phúc </p>
+            <p>Phone Number: 0867850056</p>
+            <p>Contact and Follow: </p><a href="https://www.youtube.com/channel/UCP7m9fLrzvcDfcaZi9htj4g">Youtube Chanel</a>
+        </div>
+        <div class="part2">
+            <p>Name: Chí Bảo</p>
+            <p>Phone Number: N/A</p>
+            <p>Contact and Follow: </p><a href="https://www.facebook.com/dcbaosgu">Facebook</a>
+        </div>
+        <div class="part3">
+          <p>Name: Đức Anh </p>
+          <p>Phone Number: N/A</p>
+          <p>Contact and Follow: </p><a href="https://www.facebook.com/ducanhdeptraivip">Facebook</a>
+        </div>
+        <div class="part4">
+          <p>Name: Tuấn Anh </p>
+          <p>Phone Number: N/A</p>
+          <p>Contact and Follow: </p><a href="#">N/A</a>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,662 @@
+*
+{
+    margin: 0;
+    padding: 0;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+@media only screen and (min-width: 1600px) { 
+    .nav-bar
+    {
+        position: sticky;
+        top:0;
+        background-color: #252527;
+        width: 100%;
+        height: 80px;
+    }
+    .nav-bar .ribbon
+    {
+        position: absolute;
+        top: 90%;
+        width: 100%;
+        height: 10%;
+        background-color: #2479c9;
+    }
+    .nav-bar .menu
+    {
+        position: absolute;
+        top:15%;
+        left: 40%;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;       
+    }
+    .nav-bar .menu .menu-item
+    {        
+        display: inline-block;
+        border-right: 1px #504f4f solid;
+    }
+    .nav-bar .menu .menu-item:hover
+    {
+        background-color: rgba(255, 255, 255, 0.3);
+    }
+    .nav-bar .menu .menu-item a
+    {
+        text-decoration: none;
+        color: #7d7e80;
+        text-align: center;
+        display: block;
+        padding: 14px 16px;
+        font-size: larger;
+    }
+    .content
+    {
+        position: absolute;
+        background-color: #1e1e1e;
+        width: 100%;
+        height: 1000px;
+    }
+    .content .name
+    {
+        position: absolute;
+        top: 5%;
+        left: 45%;
+        width: 100%;
+        color: white;
+    }
+    .content .download-content
+    {
+        position: absolute;
+        background-color: #3c3c3c;
+        top: 15%;
+        left: 10%;
+        width: 80%;
+        height: 650px;
+        border-radius: 15px;
+        overflow: hidden;
+        animation: fadeIn 3s;
+        box-shadow: 5px 10px 8px #504f4f;
+    }
+    @keyframes fadeIn {
+        0% { opacity: 0; }
+        100% { opacity: 1; }
+    }
+    .content .download-content .left
+    {
+        width: 40%;
+        height: 100%;
+        border-right: 8px #504f4f solid;
+        float: left;
+        color: white;
+    }
+    .content .download-content .left .logo
+    {
+        margin-left: 25%;
+        width: 20px;
+        height: 20px;
+    }
+    .content .download-content .left .info
+    {
+        margin-top: 40%;
+        margin-left: 15%;
+        width: 100%;
+    }
+    .content .download-content .left .info p
+    {
+        padding-top: 5%;
+    }
+    .content .download-content .right
+    {
+        width: 59%;
+        height: 100%;
+        float: left;
+    }
+    .content .download-content .right .title
+    {
+        width: 100%;
+        padding-top: 5%;
+        padding-bottom: 5%;
+        color: white;
+    }
+    .content .download-content .right .menu
+    {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;   
+    }
+    .content .download-content .right .menu .menuitems
+    {
+        margin-left: 5%;
+        display: inline-block;
+        border-bottom: 1px #504f4f solid;
+    }
+    .content .download-content .right .menu .menuitems a
+    {
+        text-decoration: none;
+        color: #7d7e80;
+        text-align: center;
+        display: block;
+        padding: 4px 3px;
+        font-size: medium;
+    }
+    .content .download-content .right .download
+    {
+        width: 100%;
+        padding: 5%;
+    }
+    .content .download-content .right .download .minimum-requirement
+    {
+        color: white;
+        padding-bottom: 5%;
+    }
+    .content .download-content .right .download .minimum-requirement h3 {padding-bottom: 2%;}
+    .content .download-content .right .download .minimum-requirement p {padding-bottom: 1%;}
+    .content .download-content .right .download .recommend-requirement h3 {padding-bottom: 2%;} 
+    .content .download-content .right .download .recommend-requirement p {padding-bottom: 1%;}
+    .content .download-content .right .download .recommend-requirement
+    {
+        color: white;
+    }
+    .content .download-content .right .downloadlink
+    {
+        margin-left: 25%;
+        width: 20%;
+        padding: 1%;
+        background-color: #2479c9;
+        border-radius: 15px;
+        color: white;
+    }
+}
+@media only screen and (min-width: 1024px) and (max-width: 1599px) { 
+    .nav-bar
+    {
+        position: sticky;
+        top:0;
+        background-color: #252527;
+        width: 100%;
+        height: 80px;
+    }
+    .nav-bar .ribbon
+    {
+        position: absolute;
+        top: 90%;
+        width: 100%;
+        height: 10%;
+        background-color: #2479c9;
+    }
+    .nav-bar .menu
+    {
+        position: absolute;
+        top:15%;
+        left: 30%;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;       
+    }
+    .nav-bar .menu .menu-item
+    {        
+        display: inline-block;
+        border-right: 1px #504f4f solid;
+    }
+    .nav-bar .menu .menu-item:hover
+    {
+        background-color: rgba(255, 255, 255, 0.3);
+    }
+    .nav-bar .menu .menu-item a
+    {
+        text-decoration: none;
+        color: #7d7e80;
+        text-align: center;
+        display: block;
+        padding: 14px 16px;
+        font-size: larger;
+    }
+    .content
+    {
+        position: absolute;
+        background-color: #1e1e1e;
+        width: 100%;
+        height: 1000px;
+    }
+    .content .name
+    {
+        position: absolute;
+        top: 5%;
+        left: 43%;
+        width: 100%;
+        color: white;
+    }
+    .content .download-content
+    {
+        position: absolute;
+        background-color: #3c3c3c;
+        top: 15%;
+        left: 10%;
+        width: 80%;
+        height: 550px;
+        border-radius: 15px;
+        overflow: hidden;
+        animation: fadeIn 3s;
+        box-shadow: 5px 10px 8px #504f4f;
+    }
+    @keyframes fadeIn {
+        0% { opacity: 0; }
+        100% { opacity: 1; }
+    }
+    .content .download-content .left
+    {
+        width: 40%;
+        height: 100%;
+        border-right: 8px #504f4f solid;
+        float: left;
+        color: white;
+    }
+    .content .download-content .left .logo
+    {
+        margin-left: 15%;
+        width: 20px;
+        height: 20px;
+    }
+    .content .download-content .left .info
+    {
+        margin-top: 60%;
+        margin-left: 15%;
+        width: 100%;
+    }
+    .content .download-content .left .info p
+    {
+        padding-top: 5%;
+    }
+    .content .download-content .right
+    {
+        width: 50%;
+        height: 100%;
+        float: left;
+    }
+    .content .download-content .right .title
+    {
+        width: 100%;
+        padding-top: 5%;
+        padding-bottom: 5%;
+        color: white;
+    }
+    .content .download-content .right .menu
+    {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;   
+    }
+    .content .download-content .right .menu .menuitems
+    {
+        margin-left: 30px;
+        display: inline-block;
+        border-bottom: 1px #504f4f solid;
+    }
+    .content .download-content .right .menu .menuitems a
+    {
+        text-decoration: none;
+        color: #7d7e80;
+        text-align: center;
+        display: block;
+        padding: 4px 2px;
+        font-size: medium;
+    }
+    .content .download-content .right .download
+    {
+        width: 100%;
+        padding: 5%;
+    }
+    .content .download-content .right .download .minimum-requirement
+    {
+        color: white;
+        padding-bottom: 5%;
+    }
+    .content .download-content .right .download .minimum-requirement h3 {padding-bottom: 2%;}
+    .content .download-content .right .download .minimum-requirement p {padding-bottom: 1%;}
+    .content .download-content .right .download .recommend-requirement h3 {padding-bottom: 2%;} 
+    .content .download-content .right .download .recommend-requirement p {padding-bottom: 1%;}
+    .content .download-content .right .download .recommend-requirement
+    {
+        color: white;
+    }
+    .content .download-content .right .downloadlink
+    {
+        margin-left: 25%;
+        width: 20%;
+        padding: 1%;
+        background-color: #2479c9;
+        border-radius: 15px;
+        color: white;
+    }
+}
+@media only screen and (min-width: 601px) and (max-width: 1023px) { 
+    .nav-bar
+    {
+        position: sticky;
+        top:0;
+        background-color: #252527;
+        width: 100%;
+        height: 80px;
+    }
+    .nav-bar .ribbon
+    {
+        position: absolute;
+        top: 90%;
+        width: 100%;
+        height: 10%;
+        background-color: #2479c9;
+    }
+    .nav-bar .menu
+    {
+        position: absolute;
+        top:15%;
+        left: 30%;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;       
+    }
+    .nav-bar .menu .menu-item
+    {        
+        display: inline-block;
+        border-right: 1px #504f4f solid;
+    }
+    .nav-bar .menu .menu-item:hover
+    {
+        background-color: rgba(255, 255, 255, 0.3);
+    }
+    .nav-bar .menu .menu-item a
+    {
+        text-decoration: none;
+        color: #7d7e80;
+        text-align: center;
+        display: block;
+        padding: 12px 14px;
+        font-size: larger;
+    }
+    .content
+    {
+        position: absolute;
+        background-color: #1e1e1e;
+        width: 100%;
+        height: 1000px;
+    }
+    .content .name
+    {
+        position: absolute;
+        top: 5%;
+        left: 43%;
+        width: 100%;
+        color: white;
+    }
+    .content .download-content
+    {
+        position: absolute;
+        background-color: #3c3c3c;
+        top: 15%;
+        left: 10%;
+        width: 80%;
+        height: 550px;
+        border-radius: 15px;
+        overflow: hidden;
+        animation: fadeIn 3s;
+        box-shadow: 5px 10px 8px #504f4f;
+    }
+    @keyframes fadeIn {
+        0% { opacity: 0; }
+        100% { opacity: 1; }
+    }
+    .content .download-content .left
+    {
+        width: 40%;
+        height: 100%;
+        border-right: 8px #504f4f solid;
+        float: left;
+        color: white;
+    }
+    .content .download-content .left .logo
+    {
+        margin-left: 10%;
+        width: 20px;
+        height: 20px;
+    }
+    .content .download-content .left .info
+    {
+        margin-top: 80%;
+        margin-left: 15%;
+        width: 100%;
+    }
+    .content .download-content .left .info p
+    {
+        padding-top: 5%;
+    }
+    .content .download-content .right
+    {
+        width: 50%;
+        height: 100%;
+        float: left;
+    }
+    .content .download-content .right .title
+    {
+        width: 100%;
+        padding-top: 5%;
+        padding-bottom: 5%;
+        color: white;
+    }
+    .content .download-content .right .menu
+    {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;   
+    }
+    .content .download-content .right .menu .menuitems
+    {
+        margin-left: 5px;
+        display: inline-block;
+        border-bottom: 1px #504f4f solid;
+    }
+    .content .download-content .right .menu .menuitems a
+    {
+        text-decoration: none;
+        color: #7d7e80;
+        text-align: center;
+        display: block;
+        padding: 4px 2px;
+        font-size: medium;
+    }
+    .content .download-content .right .download
+    {
+        width: 100%;
+        padding: 5%;
+    }
+    .content .download-content .right .download .minimum-requirement
+    {
+        color: white;
+        padding-bottom: 5%;
+    }
+    .content .download-content .right .download .minimum-requirement h3 {padding-bottom: 2%;}
+    .content .download-content .right .download .minimum-requirement p {padding-bottom: 1%;}
+    .content .download-content .right .download .recommend-requirement h3 {padding-bottom: 2%;} 
+    .content .download-content .right .download .recommend-requirement p {padding-bottom: 1%;}
+    .content .download-content .right .download .recommend-requirement
+    {
+        color: white;
+    }
+    .content .download-content .right .downloadlink
+    {
+        margin-left: 25%;
+        width: 20%;
+        padding: 1%;
+        background-color: #2479c9;
+        border-radius: 15px;
+        color: white;
+    }
+}
+
+@media only screen and (max-width: 600px) { 
+    .nav-bar
+    {
+        position: sticky;
+        top:0;
+        background-color: #252527;
+        width: 100%;
+        height: 60px;
+    }
+    .nav-bar .ribbon
+    {
+        position: absolute;
+        top: 90%;
+        width: 100%;
+        height: 10%;
+        background-color: #2479c9;
+    }
+    .nav-bar .menu
+    {
+        position: absolute;
+        top:15%;
+        left: 3%;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;       
+    }
+    .nav-bar .menu .menu-item
+    {        
+        display: inline-block;
+        border-right: 1px #504f4f solid;
+    }
+    .nav-bar .menu .menu-item:hover
+    {
+        background-color: rgba(255, 255, 255, 0.3);
+    }
+    .nav-bar .menu .menu-item a
+    {
+        text-decoration: none;
+        color: #7d7e80;
+        text-align: center;
+        display: block;
+        padding: 5px 2px;
+        font-size: medium;
+    }
+    .content
+    {
+        position: absolute;
+        background-color: #1e1e1e;
+        width: 100%;
+        height: 1200px;
+    }
+    .content .name
+    {
+        position: absolute;
+        top: 5%;
+        left: 23%;
+        width: 100%;
+        color: white;
+    }
+    .content .download-content
+    {
+        position: absolute;
+        background-color: #3c3c3c;
+        top: 15%;
+        left: 10%;
+        width: 80%;
+        height: 1000px;
+        border-radius: 15px;
+        overflow: hidden;
+        animation: fadeIn 3s;
+        box-shadow: 5px 10px 8px #504f4f;
+    }
+    @keyframes fadeIn {
+        0% { opacity: 0; }
+        100% { opacity: 1; }
+    }
+    .content .download-content .left
+    {
+        width: 100%;
+        height: 50%;
+        border-right: 8px #504f4f solid;
+        float: left;
+        color: white;
+    }
+    .content .download-content .left .logo
+    {
+        margin-left: 20%;
+        width: 20px;
+        height: 20px;
+    }
+    .content .download-content .left .info
+    {
+        margin-top: 50%;
+        margin-left: 25%;
+        width: 100%;
+    }
+    .content .download-content .left .info p
+    {
+        padding-top: 5%;
+    }
+    .content .download-content .right
+    {
+        width: 100%;
+        height: 50%;
+        float: left;
+    }
+    .content .download-content .right .title
+    {
+        width: 100%;
+        padding-bottom: 5%;
+        color: white;
+    }
+    .content .download-content .right .menu
+    {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;   
+    }
+    .content .download-content .right .menu .menuitems
+    {
+        margin-left: 3px;
+        display: inline-block;
+        border-bottom: 1px #504f4f solid;
+    }
+    .content .download-content .right .menu .menuitems a
+    {
+        text-decoration: none;
+        color: #7d7e80;
+        text-align: center;
+        display: block;
+        padding: 4px 2px;
+        font-size: medium;
+    }
+    .content .download-content .right .download
+    {
+        width: 100%;
+        padding: 5%;
+    }
+    .content .download-content .right .download .minimum-requirement
+    {
+        color: white;
+        padding-bottom: 5%;
+    }
+    .content .download-content .right .download .minimum-requirement h3 {padding-bottom: 2%;}
+    .content .download-content .right .download .minimum-requirement p {padding-bottom: 1%;}
+    .content .download-content .right .download .recommend-requirement h3 {padding-bottom: 2%;} 
+    .content .download-content .right .download .recommend-requirement p {padding-bottom: 1%;}
+    .content .download-content .right .download .recommend-requirement
+    {
+        color: white;
+    }
+    .content .download-content .right .downloadlink
+    {
+        margin-left: 25%;
+        width: 20%;
+        padding: 1%;
+        background-color: #2479c9;
+        border-radius: 15px;
+        color: white;
+    }
+}
