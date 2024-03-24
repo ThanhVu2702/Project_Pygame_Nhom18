@@ -39,10 +39,12 @@ class App(QWidget):
         # Tạo 3 button
         btn1 = QPushButton('Tank PvP', self)
         btn1.move(90, 370)
+        btn1.setStyleSheet("QPushButton:hover { background-color: red }") #đổi màu nền button
         btn1.clicked.connect(self.on_click_game)
         
         btn2 = QPushButton('Crazy Tank', self)
         btn2.move(300, 370)
+        btn2.setStyleSheet("QPushButton:hover { background-color: yellow }")
         btn2.clicked.connect(self.on_click_game)
         
         btn3 = QPushButton('Thoát', self)

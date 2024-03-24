@@ -39,7 +39,7 @@ def player_classes(option,player):
     if option == 0: #tank 1 có tốc độ bắn và di chuyển nhanh hơn, nhưng có lượng máu thấp hơn
 
         player.cooldown = 30 #Giảm cooldown để bắn nhanh hơn
-        player.health = 3  
+        player.health = 4  
         player.speed = 5
         player.pics = ver1 # ảnh dùng cho xe tăng loại 1
         player.image = ver1[0] # Ảnh hiển thị đầu tiên cho xe tăng loại 1
@@ -112,11 +112,11 @@ def drawPlayerHealth(player):
     
     p1healthpos = [60, 500]                                 #set up vị trí máu của Player1 trong trận chiến
     p1title = my_font4.render('P1', True, (0,0,0))           #tạo tiêu đề "chữ P1" với màu tương ứng
-    p2healthpos = [520,500]
+    p2healthpos = [500,500]
     p2title = my_font4.render('P2', True, (0,0,255))        
     
     screen.blit(p1title, (35, 500)) # vị trí chữ P1 (góc dưới bên trái màn hình)
-    screen.blit(p2title, (495, 500)) # Khi giá trị của tọa độ x tăng, đối tượng di chuyển sang bên phải; tọa độ y tăng,di chuyển xuống dưới.
+    screen.blit(p2title, (475, 500)) # Khi giá trị của tọa độ x tăng, đối tượng di chuyển sang bên phải; tọa độ y tăng,di chuyển xuống dưới.
 
     #duyệt số lượng máu của người chơi và hiển thị nó trên màn hình tương ứng với vị trí của người chơi 1 hoặc người chơi 2
     #đồng thời cập nhật vị trí kế tiếp để hiển thị hình ảnh máu tiếp theo
@@ -322,8 +322,8 @@ def selectionScreen(thisStage):
     instruction = my_font4.render('Use your left and right controls to switch between tanks.', True, (255,255,0))
     instruction2 = my_font4.render('Press ENTER to start the battle !!!', True, (255,255,0))
 
-    options = [imageUp_v1,imageUp_v2]                  #tạo danh sách chứa các ảnh của 2 phiên bản tank 
-    stats = {0:['3', '6', '3'], 1:['6','3','1']}
+    options = [imageUp_v1,imageUp_v2]                  #tạo danh sách chứa các ảnh của 2 phiên bản tank, cập nhật chỉ số tank
+    stats = {0:['4', '6', '3'], 1:['6','3','1']}
     
     DisplaySurf = pygame.Surface((80,80))
     DisplaySurf.fill((255,212,255))                 #tạo ô nền cho tank
