@@ -290,6 +290,7 @@ def gameMenu(thisStage):
                         end = False
                         thisStage = False
 
+##################################### SET UP SELECT TANK #####################################################################3
 def selectionScreen(thisStage):
     #shows menu, cửa sổ màn hình đầu tiên khi vào gaem
     '''
@@ -618,6 +619,7 @@ imageDown_v2 = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/Tank2P/picture/
 imageRight_v2 = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/Tank2P/picture/tank2 right.png')
 imageLeft_v2 = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/Tank2P/picture/tank2 left.png')
 
+################################## ĐỊNH DẠNG TANK ##################################################################################
 #Hai danh sách chứa hình ảnh đại diện cho các version khác nhau của người chơi và các nhiều hướng khác nhau
 ver1 = [imageUp_v1,imageDown_v1,imageRight_v1,imageLeft_v1]
 ver2 = [imageUp_v2,imageDown_v2,imageRight_v2,imageLeft_v2]
