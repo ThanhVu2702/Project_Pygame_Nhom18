@@ -290,7 +290,7 @@ def gameMenu(thisStage):
                         end = False
                         thisStage = False
 
-##################################### SET UP SELECT TANK #####################################################################3
+##################################### SET UP SELECT TANK #####################################################################
 def selectionScreen(thisStage):
     #shows menu, cửa sổ màn hình đầu tiên khi vào gaem
     '''
@@ -592,7 +592,7 @@ my_font3 = pygame.font.SysFont('andalus', 72)      #setup Font chữ
 my_font4 = pygame.font.SysFont('candara', 20)
 my_font5 = pygame.font.SysFont('arial', 16)
 
-################################# SET UP CỬA SỔ GAME ######################################################################3
+################################# SET UP CỬA SỔ GAME ######################################################################
 size = (605, 540) #kích thước cửa sổ game
 screen = pygame.display.set_mode(size)
 screenPIC = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/Tank2P/picture/anhnen.png')
