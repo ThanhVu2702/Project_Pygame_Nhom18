@@ -9,7 +9,7 @@ dowload VSCode: https://code.visualstudio.com/download
 dowload python: https://www.python.org/ftp/python/3.12.2/python-3.12.2-amd64.exe
 
 --------------------
-
+-----------------
 pip install PyQt5
 -----------------
 
