@@ -382,7 +382,7 @@ def selectionScreen(thisStage):
         screen.blit(p2Title, (420, 150))
 
         screen.blit(p1statsHealth, (45,200)) 
-        screen.blit(p1statsSpeed, (45,220))  
+        screen.blit(p1statsSpeed, (45,220))  #định dạng chỉ số tank
         screen.blit(p1statsReload, (45,240)) 
 
         screen.blit(p2statsHealth, (500,200)) #tọa độ chỉ số máu của player2
@@ -395,7 +395,7 @@ def selectionScreen(thisStage):
         screen.blit(options[Opt2], (415, 220))
 
         screen.blit(instructionP1, (70, 290))
-        screen.blit(instructionP2, (330, 290))
+        screen.blit(instructionP2, (330, 290)) 
 
         screen.blit(instruction, (70, 500)) #tọa độ của dòng chữ "Use your left and right controls..."
         screen.blit(instruction2, (170, 520))
@@ -591,6 +591,7 @@ my_font3 = pygame.font.SysFont('andalus', 72)      #setup Font chữ
 my_font4 = pygame.font.SysFont('candara', 20)
 my_font5 = pygame.font.SysFont('arial', 16)
 
+################################# SET UP CỬA SỔ GAME ######################################################################3
 size = (605, 540) #kích thước cửa sổ game
 screen = pygame.display.set_mode(size)
 screenPIC = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/Tank2P/picture/anhnen.png')
