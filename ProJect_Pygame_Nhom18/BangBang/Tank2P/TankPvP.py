@@ -292,7 +292,7 @@ def gameMenu(thisStage):
 
 ##################################### SET UP SELECT TANK #####################################################################
 def selectionScreen(thisStage):
-    #shows menu, cửa sổ màn hình đầu tiên khi vào gaem
+    #shows menu, cửa sổ màn hình đầu tiên khi vào game
     '''
     Đoạn mã cần kiểm tra biến 'thisStage' trước khi thực thi một số chức năng như cập nhật lớp của "player tank" và gọi hàm readMap()
     để chuẩn bị cho trận chiến.
@@ -371,7 +371,7 @@ def selectionScreen(thisStage):
                         
         p1statsHealth = my_font5.render('Health: ' + stats[Opt1][0], True, (255,212,212))
         p1statsSpeed = my_font5.render('Speed: ' + stats[Opt1][1],True, (255,212,212))
-        p1statsReload = my_font5.render('Reload: ' + stats[Opt1][2], True, (255,212,212))   
+        p1statsReload = my_font5.render('Reload: ' + stats[Opt1][2], True, (255,212,212))  
         p2statsHealth = my_font5.render('Health: ' + stats[Opt2][0], True, (255,212,212))   
         p2statsSpeed = my_font5.render('Speed: ' + stats[Opt2][1],True, (255,212,212))
         p2statsReload = my_font5.render('Reload: ' + stats[Opt2][2], True, (255,212,212))
