@@ -371,8 +371,8 @@ def selectionScreen(thisStage):
                         
         p1statsHealth = my_font5.render('Health: ' + stats[Opt1][0], True, (255,212,212))
         p1statsSpeed = my_font5.render('Speed: ' + stats[Opt1][1],True, (255,212,212))
-        p1statsReload = my_font5.render('Reload: ' + stats[Opt1][2], True, (255,212,212))   #these renders needs to be in the loop because as users switch
-        p2statsHealth = my_font5.render('Health: ' + stats[Opt2][0], True, (255,212,212))   #between tanks, the stats info needs to update
+        p1statsReload = my_font5.render('Reload: ' + stats[Opt1][2], True, (255,212,212))   
+        p2statsHealth = my_font5.render('Health: ' + stats[Opt2][0], True, (255,212,212))   
         p2statsSpeed = my_font5.render('Speed: ' + stats[Opt2][1],True, (255,212,212))
         p2statsReload = my_font5.render('Reload: ' + stats[Opt2][2], True, (255,212,212))
         
@@ -597,9 +597,9 @@ size = (605, 540) #kích thước cửa sổ game
 screen = pygame.display.set_mode(size)
 screenPIC = pygame.image.load('ProJect_Pygame_Nhom18/BangBang/Tank2P/picture/anhnen.png')
 pygame.display.set_caption("Tank Moba PvP")              #đặt tiêu đề cửa sổ game
-background = pygame.Surface(size) # tạo một đối tượng Surface để làm nền, sau đó "convert" nó để cải thiện hiệu suất hiển thị trên màn hình.
+background = pygame.Surface(size)                 #tạo một đối tượng Surface để làm nền, sau đó "convert" nó để cải thiện hiệu suất hiển thị trên màn hình.
 background = background.convert()
-background.fill(colours['grey']) #màu nền của map trong game
+background.fill(colours['grey'])                        #màu nền của map trong game
 
 explode = pygame.mixer.Sound('ProJect_Pygame_Nhom18/BangBang/Tank2P/bum.ogg')
 shoot = pygame.mixer.Sound('ProJect_Pygame_Nhom18/BangBang/Tank2P/music/fireMusic.mp3')          
